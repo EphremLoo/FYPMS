@@ -46,7 +46,9 @@
                     <x-menu-separator />
                 @endif
 
-                <x-menu-item title="Hello" icon="o-sparkles" link="/" />
+                <x-menu-item title="Dashboard" icon="o-sparkles" link="/" />
+
+                <x-menu-item title="Projects" icon="o-sparkles" link="{{ route('projects.index') }}" />
 
                 <x-menu-sub title="Settings" icon="o-cog-6-tooth">
                     <x-menu-item title="Wifi" icon="o-wifi" link="####" />

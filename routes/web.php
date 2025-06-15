@@ -19,4 +19,5 @@ Route::get('/logout', function () {
 
 Route::middleware(['auth'])->group(function () {
     Volt::route('/users', 'users.index')->name('users.index');
+    Route::get('/projects', \App\Livewire\ListProject::class)->name('projects.index');
 });
