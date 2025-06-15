@@ -6,7 +6,7 @@ use Livewire\Volt\Volt;
 
 
 // Users will be redirected to this route if not logged in
-Volt::route('/login', 'login')->name('login');
+Route::get('/', Login::class);
 
 // Define the logout
 Route::get('/logout', function () {
@@ -17,4 +17,4 @@ Route::get('/logout', function () {
     return redirect('/');
 });
 
-Route::get('/', Login::class);
+Volt::route('/users', 'users.index');
