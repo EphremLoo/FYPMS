@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Login;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -16,4 +17,4 @@ Route::get('/logout', function () {
     return redirect('/');
 });
 
-Volt::route('/', 'users.index');
+Route::get('/', Login::class);

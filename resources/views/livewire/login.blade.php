@@ -1,39 +1,3 @@
-<?php
-
-use Livewire\Volt\Component;
-
-new class extends Component {
-    #[Layout('components.layouts.empty')]
-    #[Title('Login')]
-
-    #[Rule('required|email')]
-    public string $email = '';
-
-    #[Rule('required')]
-    public string $password = '';
-
-    public function mount()
-    {
-        // It is logged in
-        if (auth()->user()) {
-            return redirect('/');
-        }
-    }
-
-    public function login()
-    {
-        $credentials = $this->validate();
-
-        if (auth()->attempt($credentials)) {
-            request()->session()->regenerate();
-
-            return redirect()->intended('/');
-        }
-
-        $this->addError('email', 'The provided credentials do not match our records.');
-    }
-}; ?>
-
 <div class="md:w-96 mx-auto mt-20">
     <div class="mb-10">
         <x-app-brand />
