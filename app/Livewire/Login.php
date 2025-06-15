@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Rule;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Title('Login')]
@@ -18,7 +20,7 @@ class Login extends Component
     {
         // It is logged in
         if (auth()->user()) {
-            return redirect('/');
+            return redirect()->route('users.index');
         }
     }
 
@@ -29,7 +31,7 @@ class Login extends Component
         if (auth()->attempt($credentials)) {
             request()->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended('/users');
         }
 
         $this->addError('email', 'The provided credentials do not match our records.');

@@ -13,8 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(CountrySeeder::class);
-        $this->call(LanguageSeeder::class);
-        User::factory(50)->create();
+        $this->call([
+            CountrySeeder::class,
+            LanguageSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class,
+        ]);
     }
 }
