@@ -15,6 +15,11 @@
             <x-button label="Create" class="btn-primary" link="" />
         </div>
         <x-table :headers="$headers" :rows="$users" :sort-by="$sortBy" with-pagination>
+            @scope('cell_role', $user)
+            @foreach($user->roles as $role)
+                <x-badge :value="$role->name" class="badge-primary" />
+            @endforeach
+            @endscope
             @scope('actions', $user)
             <x-button icon="o-trash" wire:click="delete({{ $user['id'] }})" wire:confirm="Are you sure?" spinner class="btn-ghost btn-sm text-error" />
             @endscope

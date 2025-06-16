@@ -41,6 +41,7 @@ class UserList extends Component
                 ['key' => 'name', 'label' => 'Name', 'class' => 'w-64'],
                 ['key' => 'email', 'label' => 'E-mail', 'sortable' => false],
                 ['key' => 'mmu_id', 'label' => 'MMU ID', 'sortable' => false],
+                ['key' => 'role', 'label' => 'Roles', 'sortable' => false],
             ],
         ]);
     }
