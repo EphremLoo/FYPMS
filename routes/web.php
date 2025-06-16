@@ -1,12 +1,11 @@
 <?php
 
-use App\Livewire\Login;
+use App\Livewire\Auth\Login;
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
 
 
 // Users will be redirected to this route if not logged in
-Route::get('/', Login::class)->name('login');
+Route::get('/login', Login::class)->name('login');
 
 // Define the logout
 Route::get('/logout', function () {
@@ -18,6 +17,7 @@ Route::get('/logout', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', \App\Livewire\Dashboard::class)->name('dashboard');
     Route::get('/users', \App\Livewire\Users\UserList::class)->name('users.index');
     Route::get('/projects', \App\Livewire\Projects\ProjectList::class)->name('projects.index');
 });

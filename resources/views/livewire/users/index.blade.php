@@ -12,7 +12,7 @@
     <!-- TABLE  -->
     <x-card shadow>
         <div class="mb-4">
-            <x-button label="Create" class="btn-primary" link="/projects" />
+            <x-button label="Create" class="btn-primary" link="" />
         </div>
         <x-table :headers="$headers" :rows="$users" :sort-by="$sortBy" with-pagination>
             @scope('actions', $user)

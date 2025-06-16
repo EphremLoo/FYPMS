@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Auth;
 
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;
@@ -20,7 +20,7 @@ class Login extends Component
     {
         // It is logged in
         if (auth()->user()) {
-            return redirect()->route('users.index');
+            return redirect()->route('dashboard');
         }
     }
 
@@ -31,7 +31,7 @@ class Login extends Component
         if (auth()->attempt($credentials)) {
             request()->session()->regenerate();
 
-            return redirect()->intended('/users');
+            return redirect()->intended('/');
         }
 
         $this->addError('email', 'The provided credentials do not match our records.');
@@ -40,6 +40,6 @@ class Login extends Component
     #[Layout('components.layouts.guest')]       //  <-- Here is the `empty` layout
     public function render()
     {
-        return view('livewire.login');
+        return view('livewire.auth.login');
     }
 }
