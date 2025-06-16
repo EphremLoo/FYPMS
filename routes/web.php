@@ -19,17 +19,17 @@ Route::get('/logout', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('student')->name('student.')->group(function () {
-        Route::get('/dashboard', \App\Livewire\students\Dashboard::class)->name('dashboard');
+        Route::get('/dashboard', \App\Livewire\student\Dashboard::class)->name('dashboard');
 
 //        Route::get('/users', \App\Livewire\Users\UserList::class)->name('users.index');
 //        Route::get('/users/create', \App\Livewire\Users\CreateUser::class)->name('users.create');
 //        Route::get('/users/{user}/edit', \App\Livewire\Users\EditUser::class)->name('users.edit');
 
-        Route::get('/projects', \App\Livewire\students\Projects\ProjectList::class)->name('projects.index');
-        Route::get('/my-projects', \App\Livewire\students\Projects\MyProjects::class)->name('projects.self');
-        Route::get('/my-project-request', \App\Livewire\students\Projects\ProjectRequest::class)->name('projects.requests');
-        Route::get('/projects/create', \App\Livewire\students\Projects\CreateProject::class)->name('projects.create');
-        Route::get('/projects/{project}/edit', \App\Livewire\students\Projects\EditProject::class)->name('projects.edit');
-        Route::get('/projects/{project}', \App\Livewire\students\Projects\ShowProject::class)->name('projects.show');
+        Route::get('/projects', \App\Livewire\student\Projects\ProjectList::class)->name('projects.index');
+        Route::get('/my-projects', \App\Livewire\student\Projects\MyProjects::class)->name('projects.self');
+        Route::get('/my-project-request', \App\Livewire\student\Projects\ProjectRequest::class)->name('projects.requests');
+        Route::get('/projects/create', \App\Livewire\student\Projects\CreateProject::class)->name('projects.create');
+        Route::get('/projects/{project}/edit', \App\Livewire\student\Projects\EditProject::class)->name('projects.edit');
+        Route::get('/projects/{project}', \App\Livewire\student\Projects\ShowProject::class)->name('projects.show');
     })->middleware('student');
 });
