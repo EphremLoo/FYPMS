@@ -53,6 +53,7 @@
                 @if(Auth()->user()->hasRole([\App\Models\User::ROLE_STUDENT, \App\Models\User::ROLE_SUPERVISOR]))
                     <x-menu-item title="Projects" icon="o-book-open" link="{{ route('projects.index') }}" />
                     <x-menu-item title="My Projects" icon="o-book-open" link="{{ route('projects.self') }}" />
+                    <x-menu-item title="Project Requests" icon="o-book-open" link="{{ route('projects.requests') }}" />
                 @endif
                 @if(Auth()->user()->hasRole(\App\Models\User::ROLE_ADMIN))
                     <x-menu-item title="Users" icon="o-users" link="{{ route('users.index') }}" />

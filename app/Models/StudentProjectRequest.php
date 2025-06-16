@@ -12,9 +12,17 @@ class StudentProjectRequest extends Model
 
     protected $guarded = ['id'];
 
-    CONST STATUS_PENDING = 'pending';
-    CONST STATUS_APPROVED = 'approved';
-    CONST STATUS_REJECTED = 'rejected';
+    CONST STATUS_PENDING = 0;
+    CONST STATUS_APPROVED = 1;
+    CONST STATUS_REJECTED = 2;
+    CONST STATUS_WITHDRAWN = 3;
+
+    CONST STATUS_ARRAY = [
+        self::STATUS_PENDING => 'Pending',
+        self::STATUS_APPROVED => 'Approved',
+        self::STATUS_REJECTED => 'Rejected',
+        self::STATUS_WITHDRAWN => 'Withdrawn',
+    ];
 
     public function project()
     {
@@ -23,5 +31,10 @@ class StudentProjectRequest extends Model
     public function student()
     {
         return $this->belongsTo(User::class, 'student_id');
+    }
+
+    public function getStatusTextAttribute()
+    {
+        return self::STATUS_ARRAY[$this->status];
     }
 }

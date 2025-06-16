@@ -9,7 +9,6 @@ use Mary\Traits\Toast;
 
 class ProjectList extends Component
 {
-
     use Toast, WithPagination;
 
     public string $search = '';
