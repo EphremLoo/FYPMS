@@ -4,7 +4,7 @@
     <x-form wire:submit="save">
         <x-input label="Name" wire:model="name" />
         <x-input label="Email" wire:model="email" />
-        <x-input label="MMU ID" wire:model="mmuId" />
+        <x-input label="MMU ID" wire:model="mmu_id" />
         <x-password label="Password" wire:model="password" right />
         <x-password label="Confirm Password" wire:model="password_confirmation" right />
         <x-choices label="Roles" wire:model="roles" :options="$rolesArray" clearable />
