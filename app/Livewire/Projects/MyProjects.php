@@ -17,7 +17,7 @@ class MyProjects extends Component
 
     public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
 
-    public $title = 'Projects';
+    public $title = 'My Projects';
 
 
     // Clear filters
