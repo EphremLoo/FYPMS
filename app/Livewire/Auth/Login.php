@@ -21,7 +21,21 @@ class Login extends Component
     {
         // It is logged in
         if (auth()->user() && auth()->user()->status === User::STATUS_ACTIVE) {
-            return redirect()->route('dashboard');
+            if (auth()->user()->hasRole(User::ROLE_ADMIN)) {
+                return redirect()->route('admin.dashboard');
+            }
+            if (auth()->user()->hasRole(User::ROLE_MODERATOR)) {
+                return redirect()->route('moderator.dashboard');
+            }
+            if (auth()->user()->hasRole(User::ROLE_SUPERVISOR)) {
+                return redirect()->route('supervisor.dashboard');
+            }
+            if (auth()->user()->hasRole(User::ROLE_STUDENT)) {
+                return redirect()->route('student.dashboard');
+            }
+            if (auth()->user()->hasRole(User::ROLE_EXAMINER)) {
+                return redirect()->route('examiner.dashboard');
+            }
         }
     }
 
@@ -41,7 +55,21 @@ class Login extends Component
             }
             request()->session()->regenerate();
 
-            return redirect()->route('dashboard');
+            if (auth()->user()->hasRole(User::ROLE_ADMIN)) {
+                return redirect()->route('admin.dashboard');
+            }
+            if (auth()->user()->hasRole(User::ROLE_MODERATOR)) {
+                return redirect()->route('moderator.dashboard');
+            }
+            if (auth()->user()->hasRole(User::ROLE_SUPERVISOR)) {
+                return redirect()->route('supervisor.dashboard');
+            }
+            if (auth()->user()->hasRole(User::ROLE_STUDENT)) {
+                return redirect()->route('student.dashboard');
+            }
+            if (auth()->user()->hasRole(User::ROLE_EXAMINER)) {
+                return redirect()->route('examiner.dashboard');
+            }
         }
 
         $this->addError('email', 'The provided credentials do not match our records.');
