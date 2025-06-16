@@ -4,10 +4,42 @@
     <x-form wire:submit="save">
         <x-input label="Name" wire:model="name" />
         <x-markdown wire:model="description" label="Description" :config="$config" />
-        <x-choices label="Student" wire:model="student_id" :options="$students" single clearable />
-        <x-choices label="Moderator" wire:model="student_id" :options="$students" single clearable />
-        <x-choices label="Supervisor" wire:model="student_id" :options="$students" single clearable />
-        <x-choices label="Examiner" wire:model="student_id" :options="$students" single clearable />
+
+        <x-choices-offline
+            label="Student"
+            wire:model="student_id"
+            :options="$students"
+            placeholder="Search ..."
+            single
+            clearable
+            searchable />
+
+        <x-choices-offline
+            label="Supervisor"
+            wire:model="supervisor_id"
+            :options="$students"
+            placeholder="Search ..."
+            single
+            clearable
+            searchable />
+
+        <x-choices-offline
+            label="Moderator"
+            wire:model="moderator_id"
+            :options="$students"
+            placeholder="Search ..."
+            single
+            clearable
+            searchable />
+
+        <x-choices-offline
+            label="Examiner"
+            wire:model="examiner_id"
+            :options="$students"
+            placeholder="Search ..."
+            single
+            clearable
+            searchable />
 
         <x-slot:actions>
             <x-button label="Cancel" link="{{ route('projects.index') }}" />
