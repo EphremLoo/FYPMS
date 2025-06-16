@@ -49,7 +49,8 @@ class UserList extends Component
     // Delete action
     public function delete(User $user): void
     {
-        $this->warning("Will delete #$user->name", 'It is fake.', position: 'toast-bottom');
+        $user->delete();
+        $this->warning("Deleting #$user->name", position: 'toast-bottom');
     }
 
     public function render()

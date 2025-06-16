@@ -31,7 +31,7 @@ class Login extends Component
         if (auth()->attempt($credentials)) {
             request()->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->route('dashboard');
         }
 
         $this->addError('email', 'The provided credentials do not match our records.');

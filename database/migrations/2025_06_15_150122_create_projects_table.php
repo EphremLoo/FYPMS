@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('examiner_id')->nullable()->constrained('users');
             $table->foreignId('created_by')->constrained('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
