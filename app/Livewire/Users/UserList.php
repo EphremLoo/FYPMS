@@ -46,13 +46,6 @@ class UserList extends Component
         }
     }
 
-    // Delete action
-    public function delete(User $user): void
-    {
-        $user->delete();
-        $this->warning("Deleting #$user->name", position: 'toast-bottom');
-    }
-
     public function render()
     {
         return view('livewire.users.index', [

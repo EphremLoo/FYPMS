@@ -10,10 +10,9 @@
         <x-choices label="Roles" wire:model="roles" :options="$rolesArray" clearable />
 
         <x-slot:actions>
+            <x-button label="Delete" icon="o-trash" wire:click="delete({{ $user['id'] }})" wire:confirm="Are you sure?" spinner class="btn-error mr-auto" />
             <x-button label="Cancel" link="/users" />
-            {{-- The important thing here is `type="submit"` --}}
-            {{-- The spinner property is nice! --}}
-            <x-button label="Save" icon="o-paper-airplane" spinner="save" type="submit" class="btn-primary" />
+            <x-button label="Save" icon="o-paper-airplane" spinner="save" type="submit" spinner class="btn-primary" />
         </x-slot:actions>
     </x-form>
 </div>

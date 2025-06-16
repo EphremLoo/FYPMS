@@ -52,6 +52,13 @@ class EditUser extends Component
         $this->success('User updated with success.', redirectTo: '/users');
     }
 
+    // Delete action
+    public function delete(User $user): void
+    {
+        $user->delete();
+        $this->warning("Deleting #$user->name", position: 'toast-bottom', redirectTo: '/users');
+    }
+
     public function render()
     {
         return view('livewire.users.edit', [
