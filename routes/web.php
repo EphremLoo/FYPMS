@@ -28,4 +28,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-projects', \App\Livewire\Projects\MyProjects::class)->name('projects.self');
     Route::get('/projects/create', \App\Livewire\Projects\CreateProject::class)->name('projects.create');
     Route::get('/projects/{project}/edit', \App\Livewire\Projects\EditProject::class)->name('projects.edit');
+    Route::get('/projects/{project}', \App\Livewire\Projects\ShowProject::class)->name('projects.show');
 });

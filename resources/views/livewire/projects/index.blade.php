@@ -24,6 +24,9 @@
             @scope('cell_status_text', $project)
                 <x-badge :value="$project->status_text" class="badge-primary" />
             @endscope
+            @scope('actions', $project)
+                <x-button icon="o-eye" link="{{ route('projects.show', $project->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
+            @endscope
         </x-table>
     </x-card>
 
