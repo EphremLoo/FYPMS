@@ -21,16 +21,16 @@ class EditProject extends Component
     #[Rule('required')]
     public string $description = '';
 
-    #[Rule('required')]
+    #[Rule('sometimes')]
     public ?string $student_id = null;
 
-    #[Rule('required')]
+    #[Rule('sometimes')]
     public ?string $supervisor_id = null;
 
-    #[Rule('required')]
+    #[Rule('sometimes')]
     public ?string $moderator_id = null;
 
-    #[Rule('required')]
+    #[Rule('sometimes')]
     public ?string $examiner_id = null;
 
     public function mount(): void
@@ -40,6 +40,11 @@ class EditProject extends Component
 
     public function save(): void
     {
+        if (auth()->user()->hasRole(User::ROLE_STUDENT) && $this->project->status == Project::STATUS_APPROVED) {
+            $this->error("Cannot update project once it has been approved.", position: 'toast-bottom', redirectTo: route('projects.edit', $this->project->getRouteKey()));
+            return;
+        }
+
         $data = $this->validate();
 
         $this->project->update($data);
@@ -49,8 +54,13 @@ class EditProject extends Component
 
     public function delete(Project $project): void
     {
+        if (auth()->user()->hasRole(User::ROLE_STUDENT) && $this->project->status == Project::STATUS_APPROVED) {
+            $this->error("Cannot delete project once it has been approved.", position: 'toast-bottom', redirectTo: route('projects.edit', $this->project->getRouteKey()));
+            return;
+        }
+
         $project->delete();
-        $this->warning("Deleting #$project->name", position: 'toast-bottom', redirectTo: route('projects.index'));
+        $this->error("Deleting #$project->name", position: 'toast-bottom', redirectTo: route('projects.index'));
     }
 
     public function render()
