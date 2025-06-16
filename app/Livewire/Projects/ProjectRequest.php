@@ -33,7 +33,7 @@ class ProjectRequest extends Component
     public function render()
     {
         return view('livewire.projects.project-requests', [
-            'studentProjectRequests' => StudentProjectRequest::paginate(10),
+            'studentProjectRequests' => StudentProjectRequest::where('student_id', auth()->id())->latest()->paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#', ],
                 ['key' => 'project_id', 'label' => 'Project',],
