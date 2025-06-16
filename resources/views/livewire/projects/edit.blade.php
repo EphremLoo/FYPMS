@@ -1,3 +1,51 @@
 <div>
-    {{-- The whole world belongs to you. --}}
+    <x-header title="Update Project - {{ $project->name }}" separator />
+
+    <x-form wire:submit="save">
+        <x-input label="Name" wire:model="name" />
+        <x-markdown wire:model="description" label="Description" :config="$config" />
+
+        <x-choices-offline
+            label="Student"
+            wire:model="student_id"
+            :options="$students"
+            placeholder="Search ..."
+            single
+            clearable
+            searchable />
+
+        <x-choices-offline
+            label="Supervisor"
+            wire:model="supervisor_id"
+            :options="$students"
+            placeholder="Search ..."
+            single
+            clearable
+            searchable />
+
+        <x-choices-offline
+            label="Moderator"
+            wire:model="moderator_id"
+            :options="$students"
+            placeholder="Search ..."
+            single
+            clearable
+            searchable />
+
+        <x-choices-offline
+            label="Examiner"
+            wire:model="examiner_id"
+            :options="$students"
+            placeholder="Search ..."
+            single
+            clearable
+            searchable />
+
+        <x-slot:actions>
+            <x-button label="Cancel" link="{{ route('projects.index') }}" />
+            {{-- The important thing here is `type="submit"` --}}
+            {{-- The spinner property is nice! --}}
+            <x-button label="Save" icon="o-paper-airplane" spinner="save" type="submit" class="btn-primary" />
+        </x-slot:actions>
+    </x-form>
 </div>
