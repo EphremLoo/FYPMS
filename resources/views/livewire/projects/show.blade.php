@@ -15,7 +15,7 @@
 
         <x-slot:actions separator>
             <x-button label="Back" link="{{ route('projects.index') }}" class="mr-auto" />
-            <x-button label="Apply" icon="o-paper-airplane" spinner="save" type="submit" class="btn-primary" />
+            <x-button label="Apply" icon="o-paper-airplane" spinner="apply" wire:click="apply" class="btn-primary" />
         </x-slot:actions>
     </x-card>
 </div>
