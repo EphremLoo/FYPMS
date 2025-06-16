@@ -20,8 +20,13 @@ class ShowProject extends Component
 
     public function apply(): void
     {
-        if (StudentProjectRequest::where('project_id', $this->project->id)->where('student_id', auth()->id())->exists()) {
+        if (StudentProjectRequest::where('project_id', $this->project->id)->where('student_id', auth()->id())->where('status', StudentProjectRequest::STATUS_PENDING)->exists()) {
             $this->error('Project applied already.');
+            return;
+        }
+
+        if ($this->project->created_by === auth()->id() || $this->project->student_id === auth()->id()) {
+            $this->error('Cannot apply to your own project.');
             return;
         }
 
