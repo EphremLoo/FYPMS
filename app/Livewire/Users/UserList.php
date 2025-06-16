@@ -5,15 +5,18 @@ namespace App\Livewire\Users;
 use App\Models\Project;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Mary\Traits\Toast;
 
 class UserList extends Component
 {
-    use Toast;
+    use Toast, withPagination;
 
     public $title = 'Users';
 
     public string $search = '';
+
+    public int $filterCount = 0;
 
     public bool $drawer = false;
 
@@ -22,20 +25,37 @@ class UserList extends Component
     // Clear filters
     public function clear(): void
     {
+        $this->filterCount = 0;
         $this->reset();
+        $this->resetPage();
         $this->success('Filters cleared.', position: 'toast-bottom');
     }
 
-    // Delete action
-    public function delete($id): void
+    // Reset pagination when any component property changes
+    public function updated($property): void
     {
-        $this->warning("Will delete #$id", 'It is fake.', position: 'toast-bottom');
+        if (!is_array($property) && $property != "") {
+            $this->resetPage();
+        }
+    }
+
+    public function updating($property, $value)
+    {
+        if ($property === 'search') {
+            $this->filterCount++;
+        }
+    }
+
+    // Delete action
+    public function delete(User $user): void
+    {
+        $this->warning("Will delete #$user->name", 'It is fake.', position: 'toast-bottom');
     }
 
     public function render()
     {
         return view('livewire.users.index', [
-            'users' => User::paginate(10),
+            'users' => User::when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#', 'class' => 'w-1'],
                 ['key' => 'name', 'label' => 'Name', 'class' => 'w-64'],
