@@ -16,7 +16,7 @@ class CreateUser extends Component
     #[Rule('required')]
     public string $name = '';
 
-    #[Rule('required|email')]
+    #[Rule('required|email|unique:users,email')]
     public string $email = '';
 
     #[Rule('nullable|confirmed')]

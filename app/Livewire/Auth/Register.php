@@ -7,14 +7,17 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Mary\Traits\Toast;
 
 #[Title('Login')]
 class Register extends Component
 {
+    use Toast;
+
     #[Rule('required')]
     public string $name = '';
 
-    #[Rule('required|email')]
+    #[Rule('required|email|unique:users,email')]
     public string $email = '';
 
     #[Rule('required|confirmed')]
