@@ -19,13 +19,15 @@ class Project extends Model implements Auditable
     protected $appends = ['status_text'];
 
     CONST STATUS_PROPOSED = 0;
-    CONST STATUS_APPROVED = 1;
-    CONST STATUS_REJECTED = 2;
-    CONST STATUS_COMPLETED = 3;
+    CONST STATUS_APPROVED = 10;
+    CONST STATUS_IN_PROGRESS = 20;
+    CONST STATUS_REJECTED = 30;
+    CONST STATUS_COMPLETED = 40;
 
     CONST STATUS_ARRAY = [
         self::STATUS_PROPOSED => 'Proposed',
         self::STATUS_APPROVED => 'Approved',
+        self::STATUS_IN_PROGRESS => 'In Progress',
         self::STATUS_REJECTED => 'Rejected',
         self::STATUS_COMPLETED => 'Completed',
     ];
