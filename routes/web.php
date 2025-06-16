@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 // Users will be redirected to this route if not logged in
 Route::get('/login', Login::class)->name('login');
+Route::get('/register', \App\Livewire\Auth\Register::class)->name('register');
 
 // Define the logout
 Route::get('/logout', function () {
