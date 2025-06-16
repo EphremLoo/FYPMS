@@ -24,9 +24,7 @@
             @endforeach
             @endscope
             @scope('actions', $user)
-            <div class="flex gap-2">
                 <x-button icon="o-pencil" link="{{ route('users.edit', $user->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
-            </div>
             @endscope
         </x-table>
     </x-card>

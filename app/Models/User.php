@@ -34,6 +34,19 @@ class User extends Authenticatable implements Auditable
         'remember_token',
     ];
 
+    const ROLE_ADMIN = 'admin';
+    const ROLE_MODERATOR = 'moderator';
+    const ROLE_STUDENT = 'student';
+    const ROLE_SUPERVISOR = 'supervisor';
+    const ROLE_EXAMINER = 'examiner';
+    CONST ROLE_ARRAY = [
+        self::ROLE_ADMIN => 'admin',
+        self::ROLE_MODERATOR => 'moderator',
+        self::ROLE_SUPERVISOR => 'supervisor',
+        self::ROLE_EXAMINER => 'examiner',
+        self::ROLE_STUDENT => 'student',
+    ];
+
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);

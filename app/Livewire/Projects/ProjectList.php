@@ -28,20 +28,15 @@ class ProjectList extends Component
         $this->success('Filters cleared.', position: 'toast-bottom');
     }
 
-    // Delete action
-    public function delete($id): void
-    {
-        $this->warning("Will delete #$id", 'It is fake.', position: 'toast-bottom');
-    }
-
     public function render()
     {
         return view('livewire.projects.index', [
-            'projects' => Project::paginate(10),
+            'projects' => Project::with('createdBy')->when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#', ],
                 ['key' => 'name', 'label' => 'Name',],
-                ['key' => 'status', 'label' => 'Status',],
+                ['key' => 'status_text', 'label' => 'Status',],
+                ['key' => 'created_by', 'label' => 'Created By',],
             ],
         ]);
     }

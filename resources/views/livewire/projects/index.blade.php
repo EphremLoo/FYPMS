@@ -12,11 +12,11 @@
     <!-- TABLE  -->
     <x-card shadow>
         <div class="mb-4">
-            <x-button label="Create" class="btn-primary" />
+            <x-button label="Create" class="btn-primary" link="{{ route('projects.create') }}"/>
         </div>
         <x-table :headers="$headers" :rows="$projects" :sort-by="$sortBy" with-pagination>
             @scope('actions', $user)
-            <x-button icon="o-trash" wire:click="delete({{ $user->id }})" wire:confirm="Are you sure?" spinner class="btn-ghost btn-sm text-error" />
+                <x-button icon="o-pencil" link="{{ route('users.edit', $user->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
             @endscope
         </x-table>
     </x-card>
