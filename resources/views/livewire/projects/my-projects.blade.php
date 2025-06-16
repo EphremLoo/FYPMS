@@ -1,9 +1,9 @@
 <div>
     <!-- HEADER -->
     <x-header :title="$title" separator progress-indicator>
-{{--        <x-slot:middle class="!justify-end">--}}
-{{--            <x-input placeholder="Search..." wire:model.live.debounce="search" clearable icon="o-magnifying-glass" />--}}
-{{--        </x-slot:middle>--}}
+        {{--        <x-slot:middle class="!justify-end">--}}
+        {{--            <x-input placeholder="Search..." wire:model.live.debounce="search" clearable icon="o-magnifying-glass" />--}}
+        {{--        </x-slot:middle>--}}
         <x-slot:actions>
             <x-button label="Filters" @click="$wire.drawer = true" responsive icon="o-funnel" />
         </x-slot:actions>
@@ -11,9 +11,12 @@
 
     <!-- TABLE  -->
     <x-card shadow>
+        <div class="mb-4">
+            <x-button label="Create" class="btn-primary" link="{{ route('projects.create') }}"/>
+        </div>
         <x-table :headers="$headers" :rows="$projects" :sort-by="$sortBy" with-pagination>
             @scope('cell_created_by', $project)
-                <span>{{ $project->createdBy->name }}</span>
+            <span>{{ $project->createdBy->name }}</span>
             @endscope
             @scope('cell_student_id', $project)
             <span>{{ $project->student?->name }}</span>
@@ -22,7 +25,10 @@
             <span>{{ $project->supervisor?->name }}</span>
             @endscope
             @scope('cell_status_text', $project)
-                <x-badge :value="$project->status_text" class="badge-primary" />
+            <x-badge :value="$project->status_text" class="badge-primary" />
+            @endscope
+            @scope('actions', $project)
+            <x-button icon="o-pencil" link="{{ route('projects.edit', $project->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
             @endscope
         </x-table>
     </x-card>
