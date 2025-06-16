@@ -20,19 +20,24 @@ class CreateProject extends Component
     public string $description = '';
 
     #[Rule('sometimes')]
-    public string $student_id = '';
+    public ?string $student_id = null;
 
     #[Rule('sometimes')]
-    public string $supervisor_id = '';
+    public ?string $supervisor_id = null;
 
     #[Rule('sometimes')]
-    public string $moderator_id = '';
+    public ?string $moderator_id = null;
 
     #[Rule('sometimes')]
-    public string $examiner_id = '';
+    public ?string $examiner_id = null;
 
     public function save(): void
     {
+        if (Auth()->user()->hasRole(User::ROLE_STUDENT) && Project::where('created_by', auth()->id())->count() >= 3) {
+            $this->error('Students can only create a maximum of 3 projects', redirectTo: route('projects.create'));
+            return;
+        }
+
         $data = $this->validate();
 
         if (auth()->user()->hasRole(User::ROLE_STUDENT)) {

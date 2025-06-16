@@ -15,8 +15,17 @@
             <x-button label="Create" class="btn-primary" link="{{ route('projects.create') }}"/>
         </div>
         <x-table :headers="$headers" :rows="$projects" :sort-by="$sortBy" with-pagination>
+            @scope('cell_created_by', $user)
+                <span>{{ $user->createdBy->name }}</span>
+            @endscope
+            @scope('cell_student_id', $user)
+            <span>{{ $user->student?->name }}</span>
+            @endscope
+            @scope('cell_supervisor_id', $user)
+            <span>{{ $user->supervisor?->name }}</span>
+            @endscope
             @scope('actions', $user)
-                <x-button icon="o-pencil" link="{{ route('users.edit', $user->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
+                <x-button icon="o-pencil" link="{{ route('projects.edit', $user->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
             @endscope
         </x-table>
     </x-card>

@@ -50,13 +50,17 @@
                 @endif
 
                 <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('dashboard') }}" />
-                <x-menu-item title="Projects" icon="o-book-open" link="{{ route('projects.index') }}" />
-                <x-menu-item title="Users" icon="o-users" link="{{ route('users.index') }}" />
+                @if(Auth()->user()->hasRole([\App\Models\User::ROLE_STUDENT, \App\Models\User::ROLE_SUPERVISOR]))
+                    <x-menu-item title="Projects" icon="o-book-open" link="{{ route('projects.index') }}" />
+                @endif
+                @if(Auth()->user()->hasRole(\App\Models\User::ROLE_ADMIN))
+                    <x-menu-item title="Users" icon="o-users" link="{{ route('users.index') }}" />
+                @endif
 
-                <x-menu-sub title="Settings" icon="o-cog-6-tooth">
-                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />
-                    <x-menu-item title="Archives" icon="o-archive-box" link="####" />
-                </x-menu-sub>
+{{--                <x-menu-sub title="Settings" icon="o-cog-6-tooth">--}}
+{{--                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />--}}
+{{--                    <x-menu-item title="Archives" icon="o-archive-box" link="####" />--}}
+{{--                </x-menu-sub>--}}
             </x-menu>
         </x-slot:sidebar>
 

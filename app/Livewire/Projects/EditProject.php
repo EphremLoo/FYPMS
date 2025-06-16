@@ -22,16 +22,16 @@ class EditProject extends Component
     public string $description = '';
 
     #[Rule('required')]
-    public string $student_id = '';
+    public ?string $student_id = null;
 
     #[Rule('required')]
-    public string $supervisor_id = '';
+    public ?string $supervisor_id = null;
 
     #[Rule('required')]
-    public string $moderator_id = '';
+    public ?string $moderator_id = null;
 
     #[Rule('required')]
-    public string $examiner_id = '';
+    public ?string $examiner_id = null;
 
     public function mount(): void
     {
@@ -45,6 +45,12 @@ class EditProject extends Component
         $this->project->update($data);
 
         $this->success('Project updated with success.', redirectTo: '/projects');
+    }
+
+    public function delete(Project $project): void
+    {
+        $project->delete();
+        $this->warning("Deleting #$project->name", position: 'toast-bottom', redirectTo: route('projects.index'));
     }
 
     public function render()
