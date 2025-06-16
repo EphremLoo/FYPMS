@@ -50,7 +50,7 @@ class CreateProject extends Component
         $data['created_by'] = auth()->id();
         Project::create($data);
 
-        $this->success('Project created with success.', redirectTo: '/projects');
+        $this->success('Project created with success.', redirectTo: route('student.projects.index'));
     }
 
     public function render()

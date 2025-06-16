@@ -43,7 +43,7 @@
         @endif
 
         <x-slot:actions>
-            <x-button label="Cancel" link="{{ route('projects.self') }}" />
+            <x-button label="Cancel" link="{{ route('student.projects.self') }}" />
             {{-- The important thing here is `type="submit"` --}}
             {{-- The spinner property is nice! --}}
             <x-button label="Save" icon="o-paper-airplane" spinner="save" type="submit" class="btn-primary" />

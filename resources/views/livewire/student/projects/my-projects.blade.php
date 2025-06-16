@@ -12,7 +12,7 @@
     <!-- TABLE  -->
     <x-card shadow>
         <div class="mb-4">
-            <x-button label="Create" class="btn-primary" link="{{ route('projects.create') }}"/>
+            <x-button label="Create" class="btn-primary" link="{{ route('student.projects.create') }}"/>
         </div>
         <x-table :headers="$headers" :rows="$projects" :sort-by="$sortBy" with-pagination>
             @scope('cell_created_by', $project)
@@ -28,7 +28,7 @@
             <x-badge :value="$project->status_text" class="badge-primary" />
             @endscope
             @scope('actions', $project)
-            <x-button icon="o-pencil" link="{{ route('projects.edit', $project->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
+            <x-button icon="o-pencil" link="{{ route('student.projects.edit', $project->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
             @endscope
         </x-table>
     </x-card>

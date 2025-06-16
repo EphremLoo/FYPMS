@@ -14,7 +14,7 @@
         <span class="block">{{ $project->description }}</span>
 
         <x-slot:actions separator>
-            <x-button label="Back" link="{{ route('projects.index') }}" class="mr-auto" />
+            <x-button label="Back" link="{{ route('student.projects.index') }}" class="mr-auto" />
             <x-button label="Apply" icon="o-paper-airplane" spinner="apply" wire:click="apply" wire:confirm="Are you sure?" class="btn-primary" />
         </x-slot:actions>
     </x-card>

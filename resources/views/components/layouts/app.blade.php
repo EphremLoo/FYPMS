@@ -50,10 +50,10 @@
                 @endif
 
                 @if(Auth()->user()->hasRole(\App\Models\User::ROLE_STUDENT))
-                    <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('dashboard') }}" />
-                    <x-menu-item title="Projects" icon="o-book-open" link="{{ route('projects.index') }}" />
-                    <x-menu-item title="My Projects" icon="o-book-open" link="{{ route('projects.self') }}" />
-                    <x-menu-item title="Project Requests" icon="o-book-open" link="{{ route('projects.requests') }}" />
+                    <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('student.dashboard') }}" />
+                    <x-menu-item title="Projects" icon="o-book-open" link="{{ route('student.projects.index') }}" />
+                    <x-menu-item title="My Projects" icon="o-book-open" link="{{ route('student.projects.self') }}" />
+                    <x-menu-item title="Project Requests" icon="o-book-open" link="{{ route('student.projects.requests') }}" />
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_SUPERVISOR))
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_MODERATOR))
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_EXAMINER))

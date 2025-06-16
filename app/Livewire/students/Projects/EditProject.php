@@ -41,12 +41,12 @@ class EditProject extends Component
     public function save(): void
     {
         if (Auth()->user()->hasRole(User::ROLE_STUDENT) && $this->project->created_by !== auth()->id()) {
-            $this->error("Cannot update project that does not belong to you", redirectTo: route('projects.edit', $this->project->getRouteKey()));
+            $this->error("Cannot update project that does not belong to you", redirectTo: route('student.projects.edit', $this->project->getRouteKey()));
             return;
         }
 
         if (auth()->user()->hasRole(User::ROLE_STUDENT) && $this->project->status == Project::STATUS_APPROVED) {
-            $this->error("Cannot update project once it has been approved.", redirectTo: route('projects.edit', $this->project->getRouteKey()));
+            $this->error("Cannot update project once it has been approved.", redirectTo: route('student.projects.edit', $this->project->getRouteKey()));
             return;
         }
 
@@ -54,18 +54,18 @@ class EditProject extends Component
 
         $this->project->update($data);
 
-        $this->success('Project updated with success.', redirectTo: '/projects');
+        $this->success('Project updated with success.', redirectTo: route('student.projects.index'));
     }
 
     public function delete(Project $project): void
     {
         if (auth()->user()->hasRole(User::ROLE_STUDENT) && $this->project->status == Project::STATUS_APPROVED) {
-            $this->error("Cannot delete project once it has been approved.", redirectTo: route('projects.edit', $this->project->getRouteKey()));
+            $this->error("Cannot delete project once it has been approved.", redirectTo: route('student.projects.edit', $this->project->getRouteKey()));
             return;
         }
 
         $project->delete();
-        $this->error("Deleting #$project->name", redirectTo: route('projects.index'));
+        $this->error("Deleting #$project->name", redirectTo: route('student.projects.index'));
     }
 
     public function render()

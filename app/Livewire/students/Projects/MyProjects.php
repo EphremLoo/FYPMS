@@ -24,7 +24,7 @@ class MyProjects extends Component
     public function clear(): void
     {
         $this->reset();
-        $this->success('Filters cleared.', position: 'toast-bottom');
+        $this->success('Filters cleared.');
     }
 
     public function render()

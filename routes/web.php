@@ -18,7 +18,7 @@ Route::get('/logout', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::prefix('student')->group(function () {
+    Route::prefix('student')->name('student.')->group(function () {
         Route::get('/dashboard', \App\Livewire\students\Dashboard::class)->name('dashboard');
 
 //        Route::get('/users', \App\Livewire\Users\UserList::class)->name('users.index');
