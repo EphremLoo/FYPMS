@@ -18,10 +18,8 @@ Route::get('/logout', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-
-
     Route::prefix('student')->group(function () {
-        Route::get('/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');
+        Route::get('/dashboard', \App\Livewire\students\Dashboard::class)->name('dashboard');
 
 //        Route::get('/users', \App\Livewire\Users\UserList::class)->name('users.index');
 //        Route::get('/users/create', \App\Livewire\Users\CreateUser::class)->name('users.create');
