@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Moderator
@@ -16,9 +17,9 @@ class Moderator
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->hasRole(User::ROLE_MODERATOR)) {
+        if (Auth::check() && auth()->user()->hasRole(User::ROLE_MODERATOR)) {
             return $next($request);
         }
-        return redirect()->route('login');
+        abort(403, 'Unauthorized');
     }
 }

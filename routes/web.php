@@ -18,7 +18,7 @@ Route::get('/logout', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::prefix('student')->name('student.')->group(function () {
+    Route::middleware([\App\Http\Middleware\Student::class])->prefix('student')->name('student.')->group(function () {
         Route::get('/dashboard', \App\Livewire\student\Dashboard::class)->name('dashboard');
         Route::get('/projects', \App\Livewire\student\Projects\ProjectList::class)->name('projects.index');
         Route::get('/my-projects', \App\Livewire\student\Projects\MyProjects::class)->name('projects.self');
@@ -26,23 +26,24 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/projects/create', \App\Livewire\student\Projects\CreateProject::class)->name('projects.create');
         Route::get('/projects/{project}/edit', \App\Livewire\student\Projects\EditProject::class)->name('projects.edit');
         Route::get('/projects/{project}', \App\Livewire\student\Projects\ShowProject::class)->name('projects.show');
-    })->middleware('student');
+    });
 
-    Route::prefix('supervisor')->name('supervisor.')->group(function () {
+    Route::middleware([\App\Http\Middleware\Supervisor::class])->prefix('supervisor')->name('supervisor.')->group(function () {
+        Route::get('/dashboard', \App\Livewire\supervisor\Dashboard::class)->name('dashboard');
+    });
 
-    })->middleware('supervisor');
+    Route::middleware([\App\Http\Middleware\Moderator::class])->prefix('moderator')->name('moderator.')->group(function () {
+        Route::get('/dashboard', \App\Livewire\moderator\Dashboard::class)->name('dashboard');
+    });
 
-    Route::prefix('moderator')->name('moderator.')->group(function () {
+    Route::middleware([\App\Http\Middleware\Examiner::class])->prefix('examiner')->name('examiner.')->group(function () {
+        Route::get('/dashboard', \App\Livewire\examiner\Dashboard::class)->name('dashboard');
+    });
 
-    })->middleware('moderator');
-
-    Route::prefix('examiner')->name('examiner.')->group(function () {
-
-    })->middleware('examiner');
-
-    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::middleware([\App\Http\Middleware\Admin::class])->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', \App\Livewire\admin\Dashboard::class)->name('dashboard');
         Route::get('/users', \App\Livewire\admin\Users\UserList::class)->name('users.index');
         Route::get('/users/create', \App\Livewire\admin\Users\CreateUser::class)->name('users.create');
         Route::get('/users/{user}/edit', \App\Livewire\admin\Users\EditUser::class)->name('users.edit');
-    })->middleware('admin');
+    });
 });

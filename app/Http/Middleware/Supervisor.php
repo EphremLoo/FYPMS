@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Supervisor
@@ -16,9 +17,9 @@ class Supervisor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->hasRole(User::ROLE_SUPERVISOR)) {
+        if (Auth::check() && auth()->user()->hasRole(User::ROLE_SUPERVISOR)) {
             return $next($request);
         }
-        return redirect()->route('login');
+        abort(403, 'Unauthorized');
     }
 }
