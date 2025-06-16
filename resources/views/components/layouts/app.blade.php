@@ -49,13 +49,15 @@
                     <x-menu-separator />
                 @endif
 
-                <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('dashboard') }}" />
-                @if(Auth()->user()->hasRole([\App\Models\User::ROLE_STUDENT, \App\Models\User::ROLE_SUPERVISOR]))
+                @if(Auth()->user()->hasRole(\App\Models\User::ROLE_STUDENT))
+                    <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('dashboard') }}" />
                     <x-menu-item title="Projects" icon="o-book-open" link="{{ route('projects.index') }}" />
                     <x-menu-item title="My Projects" icon="o-book-open" link="{{ route('projects.self') }}" />
                     <x-menu-item title="Project Requests" icon="o-book-open" link="{{ route('projects.requests') }}" />
-                @endif
-                @if(Auth()->user()->hasRole(\App\Models\User::ROLE_ADMIN))
+                @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_SUPERVISOR))
+                @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_MODERATOR))
+                @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_EXAMINER))
+                @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_ADMIN))
                     <x-menu-item title="Users" icon="o-users" link="{{ route('users.index') }}" />
                 @endif
 

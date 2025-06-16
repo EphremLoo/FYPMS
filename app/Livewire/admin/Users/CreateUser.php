@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Users;
+namespace App\Livewire\admin\Users;
 
 use App\Models\User;
 use Livewire\Attributes\Rule;
@@ -44,7 +44,7 @@ class CreateUser extends Component
 
     public function render()
     {
-        return view('livewire.users.create', [
+        return view('livewire.admin.users.create', [
             'rolesArray' => Role::all()->toArray(),
         ]);
     }

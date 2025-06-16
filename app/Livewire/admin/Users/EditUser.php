@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire\Users;
+namespace App\Livewire\admin\Users;
 
 use App\Models\User;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Mary\Traits\Toast;
-use Livewire\Attributes\Rule;
 use Spatie\Permission\Models\Role;
 
 class EditUser extends Component
@@ -61,7 +61,7 @@ class EditUser extends Component
 
     public function render()
     {
-        return view('livewire.users.edit', [
+        return view('livewire.admin.users.edit', [
             'rolesArray' => Role::all()->toArray(),
         ]);
     }

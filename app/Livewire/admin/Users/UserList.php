@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Livewire\Users;
+namespace App\Livewire\admin\Users;
 
-use App\Models\Project;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -48,7 +47,7 @@ class UserList extends Component
 
     public function render()
     {
-        return view('livewire.users.index', [
+        return view('livewire.admin.users.index', [
             'users' => User::when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#', 'class' => 'w-1'],
