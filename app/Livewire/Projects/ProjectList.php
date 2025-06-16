@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Projects;
 
 use App\Models\Project;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Mary\Traits\Toast;
 
-class ListProject extends Component
+class ProjectList extends Component
 {
+
+    use Toast, WithPagination;
+
     public string $search = '';
 
     public bool $drawer = false;

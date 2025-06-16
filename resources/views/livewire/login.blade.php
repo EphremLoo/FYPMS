@@ -8,7 +8,7 @@
         <x-input placeholder="Password" wire:model="password" type="password" icon="o-key" />
 
         <x-slot:actions>
-            <x-button label="Create an account" class="btn-ghost" link="/register" />
+{{--            <x-button label="Create an account" class="btn-ghost" link="/register" />--}}
             <x-button label="Login" type="submit" icon="o-paper-airplane" class="btn-primary" spinner="login" />
         </x-slot:actions>
     </x-form>

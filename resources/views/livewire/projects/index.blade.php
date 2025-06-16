@@ -14,7 +14,7 @@
         <div class="mb-4">
             <x-button label="Create" class="btn-primary" />
         </div>
-        <x-table :headers="$headers" :rows="$projects" :sort-by="$sortBy">
+        <x-table :headers="$headers" :rows="$projects" :sort-by="$sortBy" with-pagination>
             @scope('actions', $user)
             <x-button icon="o-trash" wire:click="delete({{ $user->id }})" wire:confirm="Are you sure?" spinner class="btn-ghost btn-sm text-error" />
             @endscope

@@ -18,6 +18,6 @@ Route::get('/logout', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Volt::route('/users', 'users.index')->name('users.index');
-    Route::get('/projects', \App\Livewire\ListProject::class)->name('projects.index');
+    Route::get('/users', \App\Livewire\Users\UserList::class)->name('users.index');
+    Route::get('/projects', \App\Livewire\Projects\ProjectList::class)->name('projects.index');
 });
