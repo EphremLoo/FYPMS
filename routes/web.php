@@ -28,6 +28,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/projects/{project}', \App\Livewire\student\Projects\ShowProject::class)->name('projects.show');
     })->middleware('student');
 
+    Route::prefix('supervisor')->name('supervisor.')->group(function () {
+
+    })->middleware('supervisor');
+
+    Route::prefix('moderator')->name('moderator.')->group(function () {
+
+    })->middleware('moderator');
+
+    Route::prefix('examiner')->name('examiner.')->group(function () {
+
+    })->middleware('examiner');
+
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/users', \App\Livewire\admin\Users\UserList::class)->name('users.index');
         Route::get('/users/create', \App\Livewire\admin\Users\CreateUser::class)->name('users.create');
