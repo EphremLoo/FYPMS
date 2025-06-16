@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'admin',
             'mmu_id' => '1111111111',
             'email' => 'admin@example.com',
+            'status' => User::STATUS_ACTIVE,
             'password' => Hash::make('12345678'),
         ]);
         $user->assignRole('admin');
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
                 'name' => 'supervisor' . $i,
                 'mmu_id' => $id,
                 'email' => 'supervisor' . $i . '@example.com',
+                'status' => User::STATUS_ACTIVE,
                 'password' => Hash::make('12345678'),
             ]);
             $user->assignRole('supervisor');
@@ -39,6 +41,7 @@ class UserSeeder extends Seeder
                 'name' => 'moderator' . $i,
                 'mmu_id' => $id,
                 'email' => 'moderator' . $i . '@example.com',
+                'status' => User::STATUS_ACTIVE,
                 'password' => Hash::make('12345678'),
             ]);
             $user->assignRole('moderator');
@@ -51,6 +54,7 @@ class UserSeeder extends Seeder
                 'name' => 'student' . $i,
                 'mmu_id' => $id,
                 'email' => 'student' . $i . '@example.com',
+                'status' => User::STATUS_ACTIVE,
                 'password' => Hash::make('12345678'),
             ]);
             $user->assignRole('student');

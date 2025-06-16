@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Auth;
 
+use App\Models\User;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Title;
@@ -19,7 +20,7 @@ class Login extends Component
     public function mount()
     {
         // It is logged in
-        if (auth()->user()) {
+        if (auth()->user() && auth()->user()->status === User::STATUS_ACTIVE) {
             return redirect()->route('dashboard');
         }
     }
@@ -29,6 +30,15 @@ class Login extends Component
         $credentials = $this->validate();
 
         if (auth()->attempt($credentials)) {
+
+            if (auth()->user()->status !== User::STATUS_ACTIVE) {
+                auth()->logout();
+                request()->session()->invalidate();
+                request()->session()->regenerateToken();
+
+                $this->addError('email', 'The provided credentials do not match our records.');
+                return redirect()->route('login');
+            }
             request()->session()->regenerate();
 
             return redirect()->route('dashboard');

@@ -47,6 +47,15 @@ class User extends Authenticatable implements Auditable
         self::ROLE_STUDENT => 'student',
     ];
 
+    const STATUS_PENDING = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 2;
+    const STATUS_ARRAY = [
+        self::STATUS_PENDING => 'Pending',
+        self::STATUS_ACTIVE => 'Active',
+        self::STATUS_INACTIVE => 'Inactive',
+    ];
+
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);

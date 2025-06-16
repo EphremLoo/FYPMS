@@ -19,22 +19,23 @@ class CreateProject extends Component
     #[Rule('required')]
     public string $description = '';
 
-    #[Rule('required')]
-    public string $student_id = '';
-
-    #[Rule('required')]
-    public string $supervisor_id = '';
-
-    #[Rule('required')]
-    public string $moderator_id = '';
-
-    #[Rule('required')]
-    public string $examiner_id = '';
+//    #[Rule('required')]
+//    public string $student_id = '';
+//
+//    #[Rule('required')]
+//    public string $supervisor_id = '';
+//
+//    #[Rule('required')]
+//    public string $moderator_id = '';
+//
+//    #[Rule('required')]
+//    public string $examiner_id = '';
 
     public function save(): void
     {
         $data = $this->validate();
 
+        $data['created_by'] = auth()->id();
         Project::create($data);
 
         $this->success('Project created with success.', redirectTo: '/projects');
