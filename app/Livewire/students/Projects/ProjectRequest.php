@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Livewire\Projects;
+namespace App\Livewire\students\Projects;
 
-use App\Models\Project;
 use App\Models\StudentProjectRequest;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -32,7 +31,7 @@ class ProjectRequest extends Component
 
     public function render()
     {
-        return view('livewire.projects.project-requests', [
+        return view('livewire.student.projects.project-requests', [
             'studentProjectRequests' => StudentProjectRequest::where('student_id', auth()->id())->latest()->paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#', ],

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Projects;
+namespace App\Livewire\students\Projects;
 
 use App\Models\Project;
 use App\Models\User;
@@ -70,7 +70,7 @@ class EditProject extends Component
 
     public function render()
     {
-        return view('livewire.projects.edit', [
+        return view('livewire.student.projects.edit', [
             'students' => User::role(User::ROLE_STUDENT)->get(),
             'moderator' => User::role(User::ROLE_MODERATOR)->get(),
             'supervisor' => User::role(User::ROLE_SUPERVISOR)->get(),

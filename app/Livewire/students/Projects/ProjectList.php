@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Projects;
+namespace App\Livewire\students\Projects;
 
 use App\Models\Project;
 use Livewire\Component;
@@ -29,7 +29,7 @@ class ProjectList extends Component
 
     public function render()
     {
-        return view('livewire.projects.index', [
+        return view('livewire.student.projects.index', [
             'projects' => Project::with('createdBy')->when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#', ],

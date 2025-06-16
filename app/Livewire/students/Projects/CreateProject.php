@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Projects;
+namespace App\Livewire\students\Projects;
 
 use App\Models\Project;
 use App\Models\User;
@@ -55,7 +55,7 @@ class CreateProject extends Component
 
     public function render()
     {
-        return view('livewire.projects.create', [
+        return view('livewire.student.projects.create', [
             'students' => User::role(User::ROLE_STUDENT)->get(),
             'moderator' => User::role(User::ROLE_MODERATOR)->get(),
             'supervisor' => User::role(User::ROLE_SUPERVISOR)->get(),
