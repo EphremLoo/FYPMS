@@ -16,30 +16,45 @@ class UserSeeder extends Seeder
     {
         $user = User::create([
             'name' => 'admin',
+            'mmu_id' => '1111111111',
             'email' => 'admin@example.com',
             'password' => Hash::make('12345678'),
         ]);
         $user->assignRole('admin');
 
-        $user = User::create([
-            'name' => 'supervisor',
-            'email' => 'supervisor@example.com',
-            'password' => Hash::make('12345678'),
-        ]);
-        $user->assignRole('supervisor');
+        $id = 1161105601;
+        for ($i = 0; $i < 10; $i++) {
+            $user = User::create([
+                'name' => 'supervisor' . $i,
+                'mmu_id' => $id,
+                'email' => 'supervisor' . $i . '@example.com',
+                'password' => Hash::make('12345678'),
+            ]);
+            $user->assignRole('supervisor');
+            $id++;
+        }
 
-        $user = User::create([
-            'name' => 'moderator',
-            'email' => 'moderator@example.com',
-            'password' => Hash::make('12345678'),
-        ]);
-        $user->assignRole('moderator');
+        for ($i = 0; $i < 10; $i++) {
+            $user = User::create([
+                'name' => 'moderator' . $i,
+                'mmu_id' => $id,
+                'email' => 'moderator' . $i . '@example.com',
+                'password' => Hash::make('12345678'),
+            ]);
+            $user->assignRole('moderator');
+            $id++;
+        }
 
-        $user = User::create([
-            'name' => 'student1',
-            'email' => 'student1@example.com',
-            'password' => Hash::make('12345678'),
-        ]);
-        $user->assignRole('student');
+        $id = 1151105600;
+        for ($i = 0; $i < 50; $i++) {
+            $user = User::create([
+                'name' => 'student' . $i,
+                'mmu_id' => $id,
+                'email' => 'student' . $i . '@example.com',
+                'password' => Hash::make('12345678'),
+            ]);
+            $user->assignRole('student');
+            $id++;
+        }
     }
 }
