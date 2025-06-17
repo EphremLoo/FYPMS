@@ -39,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware([\App\Http\Middleware\Moderator::class])->prefix('moderator')->name('moderator.')->group(function () {
         Route::get('/dashboard', \App\Livewire\moderator\Dashboard::class)->name('dashboard');
+        Route::get('/my-projects', \App\Livewire\moderator\Projects\MyProjects::class)->name('projects.self');
+        Route::get('/projects/{project}', \App\Livewire\moderator\Projects\ShowProject::class)->name('projects.show');
     });
 
     Route::middleware([\App\Http\Middleware\Examiner::class])->prefix('examiner')->name('examiner.')->group(function () {
