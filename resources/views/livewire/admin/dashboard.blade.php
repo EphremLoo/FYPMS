@@ -2,7 +2,7 @@
     <!-- HEADER -->
     <x-header :title="$title" separator progress-indicator />
 
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <x-stat
             title="Total Users"
             value="{{ $totalUsers }}"
@@ -18,15 +18,22 @@
 
         <x-stat
             title="Pending Users"
-            value="{{ $rejectedUsers }}"
+            value="{{ $pendingUsers }}"
             icon="o-users"
             class="text-yellow-500"
             color="text-yellow-500" />
 
         <x-stat
-            title="Inactive Users"
-            value="{{ $pendingUsers }}"
+            title="Rejected Users"
+            value="{{ $rejectedUsers }}"
             icon="o-no-symbol"
+            class="text-red-500"
+            color="text-red-500" />
+
+        <x-stat
+            title="Inactive Users"
+            value="{{ $inactiveUsers }}"
+            icon="o-archive-box-x-mark"
             class="text-gray-500"
             color="text-gray-500" />
     </div>

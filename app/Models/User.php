@@ -50,15 +50,19 @@ class User extends Authenticatable implements Auditable
     const STATUS_PENDING = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 2;
+    const STATUS_REJECTED = 3;
+
     const STATUS_ARRAY = [
         self::STATUS_PENDING => 'Pending',
         self::STATUS_ACTIVE => 'Active',
         self::STATUS_INACTIVE => 'Inactive',
+        self::STATUS_REJECTED => 'Rejected',
     ];
     const STATUS_ARRAY_COLOR = [
         self::STATUS_PENDING => 'badge-warning',
         self::STATUS_ACTIVE => 'badge-primary',
         self::STATUS_INACTIVE => 'badge-soft',
+        self::STATUS_REJECTED => 'badge-error',
     ];
 
     public function country(): BelongsTo

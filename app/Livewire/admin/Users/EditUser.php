@@ -78,6 +78,10 @@ class EditUser extends Component
                 [
                     'id' => User::STATUS_INACTIVE,
                     'name' => 'Inactive'
+                ],
+                [
+                    'id' => User::STATUS_REJECTED,
+                    'name' => 'Rejected'
                 ]
             ],
         ]);

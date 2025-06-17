@@ -13,14 +13,16 @@ class Dashboard extends Component
     {
         $totalUsers = User::count();
         $approvedUsers = User::where('status', User::STATUS_ACTIVE)->count();
-        $rejectedUsers = User::where('status', User::STATUS_INACTIVE)->count();
+        $rejectedUsers = User::where('status', User::STATUS_REJECTED)->count();
         $pendingUsers = User::where('status', User::STATUS_PENDING)->count();
+        $inactiveUsers = User::where('status', User::STATUS_INACTIVE)->count();
 
         return view('livewire.admin.dashboard', [
             'totalUsers' => $totalUsers,
             'approvedUsers' => $approvedUsers,
             'rejectedUsers' => $rejectedUsers,
             'pendingUsers' => $pendingUsers,
+            'inactiveUsers' => $inactiveUsers,
         ]);
     }
 }
