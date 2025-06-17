@@ -15,7 +15,7 @@ class MyProjects extends Component
 
     public bool $drawer = false;
 
-    public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
+    public array $sortBy = ['column' => 'id', 'direction' => 'asc'];
 
     public $title = 'My Projects';
 

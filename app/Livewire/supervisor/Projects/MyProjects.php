@@ -15,7 +15,7 @@ class MyProjects extends Component
 
     public bool $drawer = false;
 
-    public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
+    public array $sortBy = ['column' => 'id', 'direction' => 'asc'];
 
     public $title = 'My Projects';
 
@@ -39,12 +39,13 @@ class MyProjects extends Component
     public function render()
     {
         return view('livewire.supervisor.projects.my-projects', [
-            'projects' => Project::where('created_by', auth()->id())->with('createdBy')->orWhere('supervisor_id', auth()->id())->when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->orderBy(...array_values($this->sortBy))->paginate(10),
+            'projects' => Project::where('created_by', auth()->id())->orWhere('supervisor_id', auth()->id())->when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->orderBy(...array_values($this->sortBy))->paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#', ],
                 ['key' => 'name', 'label' => 'Name',],
                 ['key' => 'status', 'label' => 'Status',],
                 ['key' => 'student_id', 'label' => 'Student',],
+                ['key' => 'supervisor_id', 'label' => 'Supervisor',],
                 ['key' => 'moderator_id', 'label' => 'Moderator',],
                 ['key' => 'examiner_id', 'label' => 'Examiner',],
                 ['key' => 'created_by', 'label' => 'Created By',],

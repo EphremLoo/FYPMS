@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
         $user->assignRole(User::ROLE_ADMIN);
 
         $id = 1161105601;
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 1; $i < 10; $i++) {
             $user = User::create([
                 'name' => 'supervisor' . $i,
                 'mmu_id' => $id,
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             $id++;
         }
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 1; $i < 10; $i++) {
             $user = User::create([
                 'name' => 'moderator' . $i,
                 'mmu_id' => $id,
@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
             $id++;
         }
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 1; $i < 10; $i++) {
             $user = User::create([
                 'name' => 'examiner' . $i,
                 'mmu_id' => $id,
@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
         }
 
         $id = 1151105600;
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 1; $i < 50; $i++) {
             $user = User::create([
                 'name' => 'student' . $i,
                 'mmu_id' => $id,

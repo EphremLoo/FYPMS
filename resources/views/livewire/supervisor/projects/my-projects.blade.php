@@ -18,6 +18,9 @@
             @scope('cell_student_id', $project)
             <span>{{ $project->student?->name }}</span>
             @endscope
+            @scope('cell_supervisor_id', $project)
+            <span>{{ $project->supervisor?->name }}</span>
+            @endscope
             @scope('cell_moderator_id', $project)
             <span>{{ $project->moderator?->name }}</span>
             @endscope
