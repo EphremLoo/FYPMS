@@ -70,6 +70,10 @@ class EditProject extends Component
 
     public function render()
     {
+        if ($this->project->student !== auth()->id() && $this->project->created_by !== auth()->id()) {
+            abort(401, 'Unauthorized');
+        }
+
         return view('livewire.student.projects.edit', [
             'students' => User::role(User::ROLE_STUDENT)->get(),
             'config' => [
