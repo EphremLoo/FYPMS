@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -13,10 +14,8 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::firstOrCreate(['name' => 'admin']);
-        Role::firstOrCreate(['name' => 'moderator']);
-        Role::firstOrCreate(['name' => 'supervisor']);
-        Role::firstOrCreate(['name' => 'examiner']);
-        Role::firstOrCreate(['name' => 'student']);
+        foreach (User::ROLE_ARRAY as $role => $name) {
+            Role::firstOrCreate(['name' => $name]);
+        }
     }
 }

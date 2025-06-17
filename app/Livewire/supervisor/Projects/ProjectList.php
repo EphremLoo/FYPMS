@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire\student\Projects;
+namespace App\Livewire\supervisor\Projects;
 
 use App\Models\Project;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Mary\Traits\Toast;
 
-class MyProjects extends Component
+class ProjectList extends Component
 {
     use Toast, WithPagination;
 
@@ -17,7 +17,7 @@ class MyProjects extends Component
 
     public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
 
-    public $title = 'My Projects';
+    public $title = 'Projects';
 
 
     // Clear filters
@@ -29,8 +29,8 @@ class MyProjects extends Component
 
     public function render()
     {
-        return view('livewire.student.projects.my-projects', [
-            'projects' => Project::where('created_by', auth()->id())->with('createdBy')->orWhere('student_id', auth()->id())->with('createdBy')->when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->paginate(10),
+        return view('livewire.supervisor.projects.index', [
+            'projects' => Project::when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#', ],
                 ['key' => 'name', 'label' => 'Name',],

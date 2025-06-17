@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'status' => User::STATUS_ACTIVE,
             'password' => Hash::make('12345678'),
         ]);
-        $user->assignRole('admin');
+        $user->assignRole(User::ROLE_ADMIN);
 
         $id = 1161105601;
         for ($i = 0; $i < 10; $i++) {
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                 'status' => User::STATUS_ACTIVE,
                 'password' => Hash::make('12345678'),
             ]);
-            $user->assignRole('supervisor');
+            $user->assignRole(User::ROLE_SUPERVISOR);
             $id++;
         }
 
@@ -44,7 +44,19 @@ class UserSeeder extends Seeder
                 'status' => User::STATUS_ACTIVE,
                 'password' => Hash::make('12345678'),
             ]);
-            $user->assignRole('moderator');
+            $user->assignRole(User::ROLE_MODERATOR);
+            $id++;
+        }
+
+        for ($i = 0; $i < 10; $i++) {
+            $user = User::create([
+                'name' => 'examiner' . $i,
+                'mmu_id' => $id,
+                'email' => 'examiner' . $i . '@example.com',
+                'status' => User::STATUS_ACTIVE,
+                'password' => Hash::make('12345678'),
+            ]);
+            $user->assignRole(User::ROLE_EXAMINER);
             $id++;
         }
 
@@ -57,7 +69,7 @@ class UserSeeder extends Seeder
                 'status' => User::STATUS_ACTIVE,
                 'password' => Hash::make('12345678'),
             ]);
-            $user->assignRole('student');
+            $user->assignRole(User::ROLE_STUDENT);
             $id++;
         }
     }

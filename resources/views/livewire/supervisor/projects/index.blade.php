@@ -13,19 +13,19 @@
     <x-card shadow>
         <x-table :headers="$headers" :rows="$projects" :sort-by="$sortBy" with-pagination>
             @scope('cell_created_by', $project)
-                <span>{{ $project->createdBy?->name }}</span>
+                <span>{{ $project->createdBy->name }}</span>
             @endscope
             @scope('cell_student_id', $project)
-                <span>{{ $project->student?->name }}</span>
+            <span>{{ $project->student?->name }}</span>
             @endscope
             @scope('cell_supervisor_id', $project)
-                <span>{{ $project->supervisor?->name }}</span>
+            <span>{{ $project->supervisor?->name }}</span>
             @endscope
             @scope('cell_status_text', $project)
                 <x-badge :value="$project->status_text" class="badge-primary" />
             @endscope
             @scope('actions', $project)
-                <x-button icon="o-eye" link="{{ route('student.projects.show', $project->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
+                <x-button icon="o-eye" link="{{ route('supervisor.projects.show', $project->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
             @endscope
         </x-table>
     </x-card>

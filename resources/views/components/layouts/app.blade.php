@@ -56,6 +56,8 @@
                     <x-menu-item title="Project Requests" icon="o-book-open" link="{{ route('student.projects.requests') }}" />
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_SUPERVISOR))
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('supervisor.dashboard') }}" />
+                    <x-menu-item title="Projects" icon="o-book-open" link="{{ route('supervisor.projects.index') }}" />
+                    <x-menu-item title="My Projects" icon="o-book-open" link="{{ route('supervisor.projects.self') }}" />
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_MODERATOR))
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('moderator.dashboard') }}" />
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_EXAMINER))

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\student\Projects;
+namespace App\Livewire\supervisor\Projects;
 
 use App\Models\Project;
 use App\Models\User;
@@ -12,7 +12,6 @@ class CreateProject extends Component
 {
     use Toast;
 
-    // You could use Livewire "form object" instead.
     #[Rule('required')]
     public string $name = '';
 
@@ -33,30 +32,21 @@ class CreateProject extends Component
 
     public function save(): void
     {
-        if (Auth()->user()->hasRole(User::ROLE_STUDENT) && Project::where('created_by', auth()->id())->count() >= 3) {
-            $this->error('Students can only create a maximum of 3 projects', redirectTo: route('student.projects.create'));
-            return;
-        }
-
         $data = $this->validate();
 
-        if (auth()->user()->hasRole(User::ROLE_STUDENT)) {
-            $data['student_id'] = auth()->id();
-        }
-        if (auth()->user()->hasRole(User::ROLE_SUPERVISOR)) {
-            $data['supervisor'] = auth()->id();
-        }
-
+        $data['supervisor_id'] = auth()->id();
         $data['created_by'] = auth()->id();
         Project::create($data);
 
-        $this->success('Project created with success.', redirectTo: route('student.projects.index'));
+        $this->success('Project created with success.', redirectTo: route('supervisor.projects.self'));
     }
 
     public function render()
     {
-        return view('livewire.student.projects.create', [
+        return view('livewire.supervisor.projects.create', [
             'students' => User::role(User::ROLE_STUDENT)->get(),
+            'moderators' => User::role(User::ROLE_MODERATOR)->get(),
+            'examiners' => User::role(User::ROLE_EXAMINER)->get(),
             'config' => [
                 'toolbar' => ['heading', 'bold', 'italic', 'strikethrough', '|', 'code', 'quote', 'unordered-list', 'ordered-list', 'horizontal-rule', '|', 'link', 'table', '|','preview', 'side-by-side'],
                 'maxHeight' => '500px'

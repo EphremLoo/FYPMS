@@ -30,6 +30,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware([\App\Http\Middleware\Supervisor::class])->prefix('supervisor')->name('supervisor.')->group(function () {
         Route::get('/dashboard', \App\Livewire\supervisor\Dashboard::class)->name('dashboard');
+        Route::get('/projects', \App\Livewire\supervisor\Projects\ProjectList::class)->name('projects.index');
+        Route::get('/my-projects', \App\Livewire\supervisor\Projects\MyProjects::class)->name('projects.self');
+        Route::get('/projects/create', \App\Livewire\supervisor\Projects\CreateProject::class)->name('projects.create');
+        Route::get('/projects/{project}/edit', \App\Livewire\supervisor\Projects\EditProject::class)->name('projects.edit');
+        Route::get('/projects/{project}', \App\Livewire\supervisor\Projects\ShowProject::class)->name('projects.show');
     });
 
     Route::middleware([\App\Http\Middleware\Moderator::class])->prefix('moderator')->name('moderator.')->group(function () {
