@@ -65,16 +65,6 @@ class User extends Authenticatable implements Auditable
         self::STATUS_REJECTED => 'badge-error',
     ];
 
-    public function country(): BelongsTo
-    {
-        return $this->belongsTo(Country::class);
-    }
-
-    public function languages(): BelongsToMany
-    {
-        return $this->belongsToMany(Language::class);
-    }
-
     /**
      * Get the attributes that should be cast.
      *
@@ -96,5 +86,10 @@ class User extends Authenticatable implements Auditable
     public function getStatusColorAttribute()
     {
         return self::STATUS_ARRAY_COLOR[$this->status];
+    }
+
+    public function projects(): BelongsTo
+    {
+        return $this->belongsTo(Project::class);
     }
 }

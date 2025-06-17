@@ -12,7 +12,7 @@
         <x-hr />
 
         <span class="block mb-4 font-bold">Description</span>
-        <div class="block">{!! \Illuminate\Support\Str::markdown($project->description) !!}</div>
+        <div class="block">{!! \Illuminate\Support\Str::markdown(nl2br($project->description)) !!}</div>
 
         <x-slot:actions separator>
             <x-button label="Back" link="{{ route('moderator.projects.self') }}" class="mr-auto" />
