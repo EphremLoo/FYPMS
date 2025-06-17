@@ -54,7 +54,7 @@ class EditProject extends Component
 
         $this->project->update($data);
 
-        $this->success('Project updated with success.', redirectTo: route('student.projects.index'));
+        $this->success('Project updated with success.', redirectTo: route('student.projects.show', $this->project->getRouteKey()));
     }
 
     public function delete(Project $project): void

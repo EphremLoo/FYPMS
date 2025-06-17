@@ -37,7 +37,10 @@
             <span>{{ $project->createdBy?->name }}</span>
             @endscope
             @scope('actions', $project)
-            <x-button icon="o-pencil" link="{{ route('student.projects.edit', $project->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
+            <div class="flex gap-2">
+                <x-button icon="o-eye" link="{{ route('student.projects.show', $project->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
+                <x-button icon="o-pencil" link="{{ route('student.projects.edit', $project->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
+            </div>
             @endscope
         </x-table>
     </x-card>

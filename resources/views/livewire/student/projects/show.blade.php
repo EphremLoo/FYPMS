@@ -15,7 +15,6 @@
         <div class="block">{!! \Illuminate\Support\Str::markdown($project->description) !!}</div>
 
         <x-slot:actions separator>
-            <x-button label="Back" link="{{ route('student.projects.index') }}" class="mr-auto" />
             @if($project->student_id == auth()->id() || $project->created_by == auth()->id())
                 <x-button label="Edit" icon="o-pencil" link="{{ route('student.projects.edit', $project->getRouteKey()) }}" class="btn-primary" />
             @else
