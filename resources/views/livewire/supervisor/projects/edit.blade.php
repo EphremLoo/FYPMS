@@ -4,7 +4,6 @@
     <x-form wire:submit="save">
         <x-input label="Name" wire:model="name" />
         <x-markdown wire:model="description" label="Description" :config="$config" />
-        <x-select label="Status" wire:model="status" :options="$statuses" />
 
         <x-choices-offline
             label="Student"

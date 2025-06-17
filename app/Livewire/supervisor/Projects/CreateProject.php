@@ -18,9 +18,6 @@ class CreateProject extends Component
     #[Rule('required')]
     public string $description = '';
 
-    #[Rule('required')]
-    public int $status = 0;
-
     #[Rule('sometimes')]
     public ?string $student_id = null;
 
