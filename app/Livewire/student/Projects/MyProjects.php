@@ -30,7 +30,7 @@ class MyProjects extends Component
     public function render()
     {
         return view('livewire.student.projects.my-projects', [
-            'projects' => Project::where('created_by', auth()->id())->with('createdBy')->orWhere('student_id', auth()->id())->with('createdBy')->when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->paginate(10),
+            'projects' => Project::where('created_by', auth()->id())->orWhere('student_id', auth()->id())->when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#', ],
                 ['key' => 'name', 'label' => 'Name',],
