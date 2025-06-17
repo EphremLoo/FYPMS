@@ -25,8 +25,13 @@ class ShowProject extends Component
             return;
         }
 
-        if ($this->project->created_by === auth()->id() || $this->project->student_id === auth()->id()) {
+        if ($this->project->created_by == auth()->id() || $this->project->student_id == auth()->id()) {
             $this->error('Cannot apply to your own project.');
+            return;
+        }
+
+        if ($this->project->status == Project::STATUS_APPROVED && !empty($this->project->student_id)) {
+            $this->error('Cannot apply to a project that has been approved and taken by a student.');
             return;
         }
 
