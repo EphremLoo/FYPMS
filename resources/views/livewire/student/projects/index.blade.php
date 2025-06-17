@@ -18,6 +18,12 @@
             @scope('cell_supervisor_id', $project)
                 <span>{{ $project->supervisor?->name }}</span>
             @endscope
+            @scope('cell_moderator_id', $project)
+            <span>{{ $project->supervisor?->name }}</span>
+            @endscope
+            @scope('cell_examiner_id', $project)
+            <span>{{ $project->supervisor?->name }}</span>
+            @endscope
             @scope('cell_status_text', $project)
                 <x-badge :value="$project->status_text" class="badge-primary" />
             @endscope
