@@ -39,8 +39,8 @@ class EditProject extends Component
 
     public function save(): void
     {
-        if ($this->project->supervisor_id !== auth()->id() || $this->project->created_by !== auth()->id()) {
-            $this->error("Cannot update project that does not belong to you or project that you are not supervising", redirectTo: route('student.projects.edit', $this->project->getRouteKey()));
+        if ($this->project->supervisor_id !== auth()->id() && $this->project->created_by !== auth()->id()) {
+            $this->error("Cannot update project that does not belong to you or project that you are not supervising", redirectTo: route('supervisor.projects.edit', $this->project->getRouteKey()));
             return;
         }
 
