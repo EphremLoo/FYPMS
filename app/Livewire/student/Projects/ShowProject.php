@@ -30,8 +30,8 @@ class ShowProject extends Component
             return;
         }
 
-        if ($this->project->status == Project::STATUS_APPROVED && !empty($this->project->student_id)) {
-            $this->error('Cannot apply to a project that has been approved and taken by a student.');
+        if (!empty($this->project->student_id)) {
+            $this->error('Cannot apply to a project that has been taken by a student.');
             return;
         }
 
