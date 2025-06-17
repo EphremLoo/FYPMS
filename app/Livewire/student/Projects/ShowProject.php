@@ -39,7 +39,7 @@ class ShowProject extends Component
             'project_id' => $this->project->id,
             'student_id' => auth()->id(),
         ]);
-        $this->project->update(['total_applications' => $this->project->total_applications - 1]);
+        $this->project->update(['total_applications' => $this->project->total_applications + 1]);
 
         $this->success('Project applied successfully. Please wait for the supervisor to approve your application.');
     }
