@@ -48,7 +48,7 @@ class UserList extends Component
     public function render()
     {
         return view('livewire.admin.users.index', [
-            'users' => User::when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->paginate(10),
+            'users' => User::when($this->search, fn($q) => $q->where('name', 'like', "%$this->search%"))->orderBy(...array_values($this->sortBy))->paginate(10),
             'headers' => [
                 ['key' => 'id', 'label' => '#', 'class' => 'w-1'],
                 ['key' => 'name', 'label' => 'Name', 'class' => 'w-64'],
