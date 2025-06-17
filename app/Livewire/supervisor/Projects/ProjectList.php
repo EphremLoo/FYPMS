@@ -48,6 +48,7 @@ class ProjectList extends Component
                 ['key' => 'supervisor_id', 'label' => 'Supervisor',],
                 ['key' => 'moderator_id', 'label' => 'Moderator',],
                 ['key' => 'examiner_id', 'label' => 'Examiner',],
+                ['key' => 'created_by', 'label' => 'Created By',],
             ],
         ]);
     }

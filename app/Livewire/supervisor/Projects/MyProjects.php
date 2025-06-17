@@ -47,6 +47,7 @@ class MyProjects extends Component
                 ['key' => 'student_id', 'label' => 'Student',],
                 ['key' => 'moderator_id', 'label' => 'Moderator',],
                 ['key' => 'examiner_id', 'label' => 'Examiner',],
+                ['key' => 'created_by', 'label' => 'Created By',],
             ],
         ]);
     }

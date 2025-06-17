@@ -27,6 +27,9 @@
             @scope('cell_status_text', $project)
                 <x-badge :value="$project->status_text" class="badge-primary" />
             @endscope
+            @scope('cell_created_by', $project)
+            <span>{{ $project->createdBy?->name }}</span>
+            @endscope
             @scope('actions', $project)
                 <x-button icon="o-eye" link="{{ route('student.projects.show', $project->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
             @endscope
