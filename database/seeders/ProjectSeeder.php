@@ -53,5 +53,16 @@ class ProjectSeeder extends Seeder
             'Image Recognition with OpenCV',
             'AI-based Resume Screening System'
         ];
+
+        foreach ($supervisorProjects as $project) {
+            $user = User::inRandomOrder()->role(User::ROLE_STUDENT)->first();
+
+            Project::create([
+                'name' => $project,
+                'description' => $project,
+                'student_id' => $user->id,
+                'created_by' => $user->id,
+            ]);
+        }
     }
 }
