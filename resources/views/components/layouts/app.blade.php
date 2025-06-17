@@ -68,6 +68,8 @@
                     <x-menu-item title="Users" icon="o-users" link="{{ route('admin.users.index') }}" />
                 @endif
 
+                <x-menu-item title="Profile" icon="m-user" link="{{ route('profile') }}" />
+
 {{--                <x-menu-sub title="Settings" icon="o-cog-6-tooth">--}}
 {{--                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />--}}
 {{--                    <x-menu-item title="Archives" icon="o-archive-box" link="####" />--}}

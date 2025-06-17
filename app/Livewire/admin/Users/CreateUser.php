@@ -12,7 +12,6 @@ class CreateUser extends Component
 {
     use Toast;
 
-    // You could use Livewire "form object" instead.
     #[Rule('required')]
     public string $name = '';
 

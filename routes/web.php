@@ -53,4 +53,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/users/create', \App\Livewire\admin\Users\CreateUser::class)->name('users.create');
         Route::get('/users/{user}/edit', \App\Livewire\admin\Users\EditUser::class)->name('users.edit');
     });
+
+    Route::get('/profile', \App\Livewire\Shared\UpdateProfile::class)->name('profile');
 });
