@@ -21,7 +21,7 @@ class ShowProject extends Component
     public function render()
     {
         return view('livewire.supervisor.projects.show', [
-            'studentProjectRequest' => StudentProjectRequest::where('project_id', $this->project->id)->paginate(10),
+            'studentProjectRequest' => StudentProjectRequest::where('project_id', $this->project->id)->latest()->paginate(10),
             'headers' => [
                 ['key' => 'student_id', 'label' => 'Student Name',],
                 ['key' => 'status_text', 'label' => 'Status',],

@@ -31,7 +31,7 @@
             <x-badge value="{{ $studentProjectRequest->status_text }}" class="badge-primary" />
             @endscope
             @scope('actions', $studentProjectRequest)
-                @if($studentProjectRequest->project->created_by == auth()->id())
+                @if($studentProjectRequest->project->created_by == auth()->id() && !in_array($studentProjectRequest->status, [\App\Models\StudentProjectRequest::STATUS_WITHDRAWN, \App\Models\StudentProjectRequest::STATUS_APPROVED, \App\Models\StudentProjectRequest::STATUS_REJECTED]))
                     <div class="flex gap-4">
                         <x-button label="Reject" class="btn-error" />
                         <x-button label="Approve" class="btn-success" />
