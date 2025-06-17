@@ -34,8 +34,8 @@
             @scope('actions', $studentProjectRequest)
                 @if($studentProjectRequest->project->created_by == auth()->id() && !in_array($studentProjectRequest->status, [\App\Models\StudentProjectRequest::STATUS_WITHDRAWN, \App\Models\StudentProjectRequest::STATUS_APPROVED, \App\Models\StudentProjectRequest::STATUS_REJECTED]))
                     <div class="flex gap-4">
-                        <x-button label="Reject" class="btn-error" />
-                        <x-button label="Approve" class="btn-success" />
+                        <x-button label="Reject" wire:click="reject({{ $studentProjectRequest->getRouteKey() }})" class="btn-error" />
+                        <x-button label="Approve" wire:click="approve({{ $studentProjectRequest->getRouteKey() }})" class="btn-success" />
                     </div>
                 @endif
             @endscope
