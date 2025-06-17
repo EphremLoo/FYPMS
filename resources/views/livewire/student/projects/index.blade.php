@@ -12,9 +12,6 @@
     <!-- TABLE  -->
     <x-card shadow>
         <x-table :headers="$headers" :rows="$projects" :sort-by="$sortBy" with-pagination>
-            @scope('cell_created_by', $project)
-                <span>{{ $project->createdBy?->name }}</span>
-            @endscope
             @scope('cell_student_id', $project)
                 <span>{{ $project->student?->name }}</span>
             @endscope

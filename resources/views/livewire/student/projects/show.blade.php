@@ -6,6 +6,7 @@
         <span class="block mb-4">Moderator: {{ $project->moderator?->name }}</span>
         <span class="block mb-4">Examiner: {{ $project->examiner?->name }}</span>
         <span class="block mb-4">Student: {{ $project->student?->name }}</span>
+        <span class="block mb-4">Created By: {{ $project->createdBy?->name }}</span>
         <span class="block mb-4">Status: <x-badge value="{{ $project->status_text }}" class="badge-primary" /></span>
 
         <x-hr />

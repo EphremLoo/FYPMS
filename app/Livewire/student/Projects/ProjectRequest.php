@@ -26,6 +26,7 @@ class ProjectRequest extends Component
         }
 
         $studentProjectRequest->update(['status' => StudentProjectRequest::STATUS_WITHDRAWN]);
+        $studentProjectRequest->project->update(['total_applications' => $studentProjectRequest->project->total_applications - 1]);
         $this->success('Project withdrawn successfully.');
     }
 

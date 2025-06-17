@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('status')->default(0);
+            $table->integer('total_applications')->default(0);
             $table->foreignId('student_id')->nullable()->constrained('users');
             $table->foreignId('moderator_id')->nullable()->constrained('users');
             $table->foreignId('supervisor_id')->nullable()->constrained('users');
