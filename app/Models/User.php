@@ -55,6 +55,11 @@ class User extends Authenticatable implements Auditable
         self::STATUS_ACTIVE => 'Active',
         self::STATUS_INACTIVE => 'Inactive',
     ];
+    const STATUS_ARRAY_COLOR = [
+        self::STATUS_PENDING => 'badge-warning',
+        self::STATUS_ACTIVE => 'badge-primary',
+        self::STATUS_INACTIVE => 'badge-soft',
+    ];
 
     public function country(): BelongsTo
     {
@@ -77,5 +82,15 @@ class User extends Authenticatable implements Auditable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getStatusTextAttribute()
+    {
+        return self::STATUS_ARRAY[$this->status];
+    }
+
+    public function getStatusColorAttribute()
+    {
+        return self::STATUS_ARRAY_COLOR[$this->status];
     }
 }

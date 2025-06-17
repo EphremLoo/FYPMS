@@ -15,7 +15,7 @@
     <!-- TABLE  -->
     <x-card shadow>
         <div class="mb-4">
-            <x-button label="Create" class="btn-primary" link="{{ route('users.create') }}" />
+            <x-button label="Create" class="btn-primary" link="{{ route('admin.users.create') }}" />
         </div>
         <x-table :headers="$headers" :rows="$users" :sort-by="$sortBy" with-pagination>
             @scope('cell_role', $user)
@@ -23,8 +23,11 @@
                 <x-badge :value="$role->name" class="badge-primary" />
             @endforeach
             @endscope
+            @scope('cell_status_text', $user)
+                <x-badge :value="$user->status_text" :class="$user->status_color" />
+            @endscope
             @scope('actions', $user)
-                <x-button icon="o-pencil" link="{{ route('users.edit', $user->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
+                <x-button icon="o-pencil" link="{{ route('admin.users.edit', $user->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
             @endscope
         </x-table>
     </x-card>

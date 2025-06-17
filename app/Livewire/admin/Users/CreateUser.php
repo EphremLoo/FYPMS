@@ -26,6 +26,9 @@ class CreateUser extends Component
     #[Rule('required')]
     public string $mmu_id = '';
 
+    #[Rule('required')]
+    public int $status = 0;
+
     #[Rule('required|array|min:1')]
     public array $roles = [];
 
@@ -39,13 +42,27 @@ class CreateUser extends Component
         }
 
         // You can toast and redirect to any route
-        $this->success('User created with success.', redirectTo: '/users');
+        $this->success('User created with success.', redirectTo: route('admin.users.index'));
     }
 
     public function render()
     {
         return view('livewire.admin.users.create', [
             'rolesArray' => Role::all()->toArray(),
+            'statuses' => [
+                [
+                    'id' => User::STATUS_PENDING,
+                    'name' => 'Pending'
+                ],
+                [
+                    'id' => User::STATUS_ACTIVE,
+                    'name' => 'Active'
+                ],
+                [
+                    'id' => User::STATUS_INACTIVE,
+                    'name' => 'Inactive'
+                ]
+            ],
         ]);
     }
 }

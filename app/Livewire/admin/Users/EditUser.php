@@ -27,6 +27,9 @@ class EditUser extends Component
     #[Rule('required')]
     public ?string $mmu_id = '';
 
+    #[Rule('required')]
+    public int $status = 0;
+
     #[Rule('required|array|min:1')]
     public array $roles = [];
 
@@ -49,20 +52,34 @@ class EditUser extends Component
         }
 
         // You can toast and redirect to any route
-        $this->success('User updated with success.', redirectTo: '/users');
+        $this->success('User updated with success.', redirectTo: route('admin.users.index'));
     }
 
     // Delete action
     public function delete(User $user): void
     {
         $user->delete();
-        $this->warning("Deleting #$user->name", position: 'toast-bottom', redirectTo: '/users');
+        $this->warning("Deleting #$user->name", position: 'toast-bottom', redirectTo: route('admin.users.index'));
     }
 
     public function render()
     {
         return view('livewire.admin.users.edit', [
             'rolesArray' => Role::all()->toArray(),
+            'statuses' => [
+                [
+                    'id' => User::STATUS_PENDING,
+                    'name' => 'Pending'
+                ],
+                [
+                    'id' => User::STATUS_ACTIVE,
+                    'name' => 'Active'
+                ],
+                [
+                    'id' => User::STATUS_INACTIVE,
+                    'name' => 'Inactive'
+                ]
+            ],
         ]);
     }
 }

@@ -62,7 +62,7 @@
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('examiner.dashboard') }}" />
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_ADMIN))
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('admin.dashboard') }}" />
-                    <x-menu-item title="Users" icon="o-users" link="{{ route('users.index') }}" />
+                    <x-menu-item title="Users" icon="o-users" link="{{ route('admin.users.index') }}" />
                 @endif
 
 {{--                <x-menu-sub title="Settings" icon="o-cog-6-tooth">--}}
