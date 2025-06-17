@@ -11,7 +11,7 @@
         <x-hr />
 
         <span class="block mb-4 font-bold">Description</span>
-        <span class="block">{{ $project->description }}</span>
+        <div class="block">{!! \Illuminate\Support\Str::markdown($project->description) !!}</div>
 
         <x-slot:actions separator>
             <x-button label="Back" link="{{ route('student.projects.index') }}" class="mr-auto" />

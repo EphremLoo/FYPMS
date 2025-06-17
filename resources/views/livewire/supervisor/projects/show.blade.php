@@ -1,7 +1,7 @@
 <div>
     <x-header title="Project - {{ $project->name }}" separator />
 
-    <x-card title="{{ $project->name }}" shadow separator>
+    <x-card title="{{ $project->name }}" shadow separator class="mb-8">
         <span class="block mb-4">Supervisor: {{ $project->supervisor?->name }}</span>
         <span class="block mb-4">Moderator: {{ $project->moderator?->name }}</span>
         <span class="block mb-4">Examiner: {{ $project->examiner?->name }}</span>
@@ -19,5 +19,25 @@
                 <x-button label="Edit" icon="o-pencil" link="{{ route('supervisor.projects.edit', $project->getRouteKey()) }}" class="btn-primary" />
             @endif
         </x-slot:actions>
+    </x-card>
+
+    <!-- TABLE  -->
+    <x-card title="Student Applications" shadow>
+        <x-table :headers="$headers" :rows="$studentProjectRequest" with-pagination>
+            @scope('cell_student_id', $studentProjectRequest)
+            <span>{{ $studentProjectRequest->student?->name }}</span>
+            @endscope
+            @scope('cell_status', $studentProjectRequest)
+            <x-badge value="{{ $studentProjectRequest->status_text }}" class="badge-primary" />
+            @endscope
+            @scope('actions', $studentProjectRequest)
+                @if($studentProjectRequest->project->created_by == auth()->id())
+                    <div class="flex gap-4">
+                        <x-button label="Reject" class="btn-error" />
+                        <x-button label="Approve" class="btn-success" />
+                    </div>
+                @endif
+            @endscope
+        </x-table>
     </x-card>
 </div>
