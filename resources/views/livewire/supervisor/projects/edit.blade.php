@@ -34,7 +34,7 @@
 
         <x-slot:actions>
             <x-button label="Delete" icon="o-trash" wire:click="delete({{ $project->getRouteKey() }})" wire:confirm="Are you sure? This process is cannot be undone." spinner class="btn-error mr-auto" />
-            <x-button label="Cancel" link="{{ route('supervisor.projects.self') }}" />
+            <x-button label="Cancel" link="{{ route('supervisor.projects.show', $project->getRouteKey()) }}" />
             <x-button label="Save" icon="o-paper-airplane" spinner="save" type="submit" class="btn-primary" />
         </x-slot:actions>
     </x-form>

@@ -40,12 +40,12 @@ class EditProject extends Component
 
     public function save(): void
     {
-        if (Auth()->user()->hasRole(User::ROLE_STUDENT) && $this->project->created_by !== auth()->id()) {
+        if ($this->project->created_by !== auth()->id()) {
             $this->error("Cannot update project that does not belong to you", redirectTo: route('student.projects.edit', $this->project->getRouteKey()));
             return;
         }
 
-        if (auth()->user()->hasRole(User::ROLE_STUDENT) && $this->project->status == Project::STATUS_APPROVED) {
+        if ($this->project->status == Project::STATUS_APPROVED) {
             $this->error("Cannot update project once it has been approved.", redirectTo: route('student.projects.edit', $this->project->getRouteKey()));
             return;
         }
@@ -59,7 +59,7 @@ class EditProject extends Component
 
     public function delete(Project $project): void
     {
-        if (auth()->user()->hasRole(User::ROLE_STUDENT) && $this->project->status == Project::STATUS_APPROVED) {
+        if ($this->project->status == Project::STATUS_APPROVED) {
             $this->error("Cannot delete project once it has been approved.", redirectTo: route('student.projects.edit', $this->project->getRouteKey()));
             return;
         }
@@ -70,7 +70,7 @@ class EditProject extends Component
 
     public function render()
     {
-        if ($this->project->student !== auth()->id() && $this->project->created_by !== auth()->id()) {
+        if ($this->project->student_id !== auth()->id() && $this->project->created_by !== auth()->id()) {
             abort(401, 'Unauthorized');
         }
 

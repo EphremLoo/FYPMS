@@ -75,6 +75,14 @@ class Login extends Component
         $this->addError('email', 'The provided credentials do not match our records.');
     }
 
+    public function logout()
+    {
+        auth()->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect()->route('login');
+    }
+
     #[Layout('components.layouts.guest')]       //  <-- Here is the `empty` layout
     public function render()
     {

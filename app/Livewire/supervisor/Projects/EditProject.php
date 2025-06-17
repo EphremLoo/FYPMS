@@ -48,7 +48,7 @@ class EditProject extends Component
 
         $this->project->update($data);
 
-        $this->success('Project updated with success.', redirectTo: route('supervisor.projects.self'));
+        $this->success('Project updated with success.', redirectTo: route('supervisor.projects.show', $this->project->getRouteKey()));
     }
 
     public function delete(Project $project): void

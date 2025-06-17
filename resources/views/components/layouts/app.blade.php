@@ -8,6 +8,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    {{-- EasyMDE --}}
     <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
     <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
 </head>
@@ -36,18 +37,7 @@
             {{-- MENU --}}
             <x-menu activate-by-route>
 
-                {{-- User --}}
-                @if($user = auth()->user())
-                    <x-menu-separator />
-
-                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
-                        <x-slot:actions>
-                            <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
-                        </x-slot:actions>
-                    </x-list-item>
-
-                    <x-menu-separator />
-                @endif
+                <x-menu-separator />
 
                 @if(Auth()->user()->hasRole(\App\Models\User::ROLE_STUDENT))
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('student.dashboard') }}" />
@@ -70,10 +60,24 @@
 
                 <x-menu-item title="Profile" icon="m-user" link="{{ route('profile') }}" />
 
-{{--                <x-menu-sub title="Settings" icon="o-cog-6-tooth">--}}
-{{--                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />--}}
-{{--                    <x-menu-item title="Archives" icon="o-archive-box" link="####" />--}}
-{{--                </x-menu-sub>--}}
+                {{--                <x-menu-sub title="Settings" icon="o-cog-6-tooth">--}}
+                {{--                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />--}}
+                {{--                    <x-menu-item title="Archives" icon="o-archive-box" link="####" />--}}
+                {{--                </x-menu-sub>--}}
+
+                {{-- User --}}
+                @if($user = auth()->user())
+                    <x-menu-separator />
+
+                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="mx-2 !-my-2 rounded">
+                        <x-slot:actions>
+                            <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
+                        </x-slot:actions>
+                    </x-list-item>
+
+                    <x-menu-separator />
+                @endif
+
             </x-menu>
         </x-slot:sidebar>
 
