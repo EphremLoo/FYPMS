@@ -5,13 +5,16 @@ namespace App\Livewire\supervisor\Projects;
 use App\Models\Project;
 use App\Models\StudentProjectRequest;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Mary\Traits\Toast;
 
 class ShowProject extends Component
 {
-    use Toast;
+    use Toast, withPagination;
 
     public Project $project;
+
+    public string $selectedTab = 'project-details-tab';
 
     public function mount(): void
     {
@@ -39,6 +42,7 @@ class ShowProject extends Component
         return view('livewire.supervisor.projects.show', [
             'studentProjectRequest' => StudentProjectRequest::where('project_id', $this->project->id)->latest()->paginate(10),
             'headers' => [
+                ['key' => 'id', 'label' => 'ID',],
                 ['key' => 'student_id', 'label' => 'Student Name',],
                 ['key' => 'status_text', 'label' => 'Status',],
             ],
