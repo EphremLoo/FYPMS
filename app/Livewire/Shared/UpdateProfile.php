@@ -44,6 +44,9 @@ class UpdateProfile extends Component
     public function save(): void
     {
         $data = $this->validate();
+        if (empty($data['password'])) {
+            unset($data['password']);
+        }
 
         $this->user->update($data);
         $this->success('Profile updated with success.', redirectTo: route('profile'));

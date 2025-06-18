@@ -43,6 +43,9 @@ class EditUser extends Component
     {
         // Validate
         $data = $this->validate();
+        if (empty($data['password'])) {
+            unset($data['password']);
+        }
 
         // Update
         $this->user->update($data);
