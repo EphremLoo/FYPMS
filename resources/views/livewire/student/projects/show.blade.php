@@ -17,6 +17,9 @@
         <x-slot:actions separator>
             <x-button label="Back" link="{{ route('student.projects.self') }}" class="mr-auto" />
             @if($project->student_id == auth()->id() || $project->created_by == auth()->id())
+                {{-- @if(false) --}}
+                    <x-button label="Meeting Logs" icon="o-clipboard" link="{{ route('student.projects.meetingloglist', $project->getRouteKey()) }}" class="btn-primary" />
+                {{-- @endif --}}
                 <x-button label="Edit" icon="o-pencil" link="{{ route('student.projects.edit', $project->getRouteKey()) }}" class="btn-primary" />
             @else
                 <x-button label="Apply" icon="o-paper-airplane" spinner="apply" wire:click="apply" wire:confirm="Are you sure?" class="btn-primary" />
