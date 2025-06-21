@@ -27,7 +27,7 @@
         <x-tab name="student-applications-tab" label="Student Applications" icon="o-sparkles">
             <!-- TABLE  -->
             <x-card title="Student Applications" shadow>
-                <x-table :headers="$headers" :rows="$studentProjectRequest" with-pagination>
+                <x-table :headers="$studentHeaders" :rows="$studentProjectRequest" with-pagination>
                     @scope('cell_student_id', $studentProjectRequest)
                     <span>{{ $studentProjectRequest->student?->name }}</span>
                     @endscope
@@ -41,6 +41,23 @@
                             <x-button label="Approve" wire:click="approve({{ $studentProjectRequest->getRouteKey() }})" wire:confirm="Are you sure?" class="btn-success" />
                         </div>
                     @endif
+                    @endscope
+                </x-table>
+            </x-card>
+        </x-tab>
+
+        <x-tab name="meeting-logs-tab" label="Meeting Logs" icon="o-clipboard">
+
+            <div class="mb-4">
+                <x-button label="Create" class="btn-primary" link="{{ route('supervisor.projects.createmeetinglog', $project->getRouteKey()) }}" />
+            </div>
+
+            <!-- TABLE  -->
+            <x-card title="Meeting Logs" shadow>
+                <x-table :headers="$logHeaders" :rows="$logs" with-pagination>
+                    {{-- View Meeting Log --}}
+                    @scope('actions', $log)
+                        <x-button icon="o-eye" link="{{ route('supervisor.projects.showmeetinglog', ['project' => $log->project->getRouteKey(), 'meeting_log' => $log->getRouteKey()]) }}" class="btn-ghost btn-sm text-primary" />
                     @endscope
                 </x-table>
             </x-card>

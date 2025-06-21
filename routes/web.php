@@ -40,8 +40,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/projects', \App\Livewire\supervisor\Projects\ProjectList::class)->name('projects.index');
         Route::get('/my-projects', \App\Livewire\supervisor\Projects\MyProjects::class)->name('projects.self');
         Route::get('/projects/create', \App\Livewire\supervisor\Projects\CreateProject::class)->name('projects.create');
-        Route::get('/projects/{project}/edit', \App\Livewire\supervisor\Projects\EditProject::class)->name('projects.edit');
         Route::get('/projects/{project}', \App\Livewire\supervisor\Projects\ShowProject::class)->name('projects.show');
+        Route::get('/projects/{project}/edit', \App\Livewire\supervisor\Projects\EditProject::class)->name('projects.edit');
+        Route::get('/projects/{project}/meeting-log/create', \App\Livewire\supervisor\Projects\CreateMeetingLog::class)->name('projects.createmeetinglog');
+        Route::get('/projects/{project}/meeting-log/{meeting_log}', \App\Livewire\supervisor\Projects\ShowMeetingLog::class)->name('projects.showmeetinglog');
+        Route::get('/projects/{project}/meeting-log/{meeting_log}/edit', \App\Livewire\supervisor\Projects\EditMeetingLog::class)->name('projects.editmeetinglog');
     });
 
     Route::middleware([\App\Http\Middleware\Moderator::class])->prefix('moderator')->name('moderator.')->group(function () {
