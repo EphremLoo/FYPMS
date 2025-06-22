@@ -2,10 +2,10 @@
     <x-header title="Update Meeting Log - {{ $meeting_log->meeting_no }}" separator />
 
     <x-form wire:submit="save">
-        <x-textarea label="Work Done" wire:model="work_done" rows="5" />
-        <x-textarea label="Work To Do" wire:model="work_to_do" rows="5" />
-        <x-textarea label="Problems Encountered" wire:model="problems_encountered" rows="5" />
-        <x-textarea label="Comments" wire:model="comments" rows="5" />
+        <x-markdown wire:model="work_done" label="Work Done" :config="$config" />
+        <x-markdown wire:model="work_to_do" label="Work To Do" :config="$config" />
+        <x-markdown wire:model="problems_encountered" label="Problems Encountered" :config="$config" />
+        <x-markdown wire:model="comments" label="Comments" :config="$config" />
 
         <x-slot:actions>
             <x-button label="Delete" icon="o-trash" wire:click="delete({{ $meeting_log['id'] }})" wire:confirm="Are you sure?" spinner class="btn-error mr-auto" />

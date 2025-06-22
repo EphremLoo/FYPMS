@@ -57,6 +57,11 @@ class EditMeetingLog extends Component
 
     public function render()
     {
-        return view('livewire.student.projects.edit-meeting-log');
+        return view('livewire.student.projects.edit-meeting-log', [
+            'config' => [
+                'toolbar' => ['heading', 'bold', 'italic', 'strikethrough', '|', 'code', 'quote', 'unordered-list', 'ordered-list', 'horizontal-rule', '|', 'link', 'table', '|','preview'],
+                'maxHeight' => '300px'
+            ]
+        ]);
     }
 }

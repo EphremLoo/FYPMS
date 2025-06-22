@@ -7,25 +7,25 @@
 
         <x-hr/>
         <span class="block mb-4 font-bold">Work Done: </span>
-        <div class="block">{{ $meeting_log->work_done }}</div>
+        <div class="block">{!! \Illuminate\Support\Str::markdown(nl2br($meeting_log->work_done)) !!}</div>
 
         <br/>
         <br/>
         
         <span class="block mb-4 font-bold">Work To Do: </span>
-        <div class="block">{{ $meeting_log->work_to_do }}</div>
+        <div class="block">{!! \Illuminate\Support\Str::markdown(nl2br($meeting_log->work_to_do)) !!}</div>
 
         <br/>
         <br/>
 
         <span class="block mb-4 font-bold">Problems Encountered:</span>
-        <div class="block">{{ $meeting_log->problems_encountered }}</div>
+        <div class="block">{!! \Illuminate\Support\Str::markdown(nl2br($meeting_log->problems_encountered)) !!}</div>
 
         <br/>
         <br/>
 
         <span class="block mb-4 font-bold">Comments:</span>
-        <div class="block">{{ $meeting_log->comments }}</div>
+        <div class="block">{!! \Illuminate\Support\Str::markdown(nl2br($meeting_log->comments)) !!}</div>
 
         <x-slot:actions separator>
             <x-button label="Back" link="{{ route('supervisor.projects.show', $project->getRouteKey()) }}" class="mr-auto" />
