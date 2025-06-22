@@ -11,7 +11,7 @@
         <x-textarea label="Comments" wire:model="comments" rows="5" />
 
         <x-slot:actions>
-            <x-button label="Cancel" link="{{ route('student.projects.meetingloglist', $project->getRouteKey()) }}" />
+            <x-button label="Cancel" link="{{ route('student.projects.show', $project->getRouteKey()) }}" />
             <x-button label="Save" icon="o-paper-airplane" spinner="save" type="submit" class="btn-primary" />
         </x-slot:actions>
     </x-form>

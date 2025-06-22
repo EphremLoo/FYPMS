@@ -28,7 +28,7 @@
         <div class="block">{{ $meeting_log->comments }}</div>
 
         <x-slot:actions separator>
-            <x-button label="Back" link="{{ route('student.projects.meetingloglist', $project->getRouteKey()) }}" class="mr-auto" />
+            <x-button label="Back" link="{{ route('student.projects.show', $project->getRouteKey()) }}" class="mr-auto" />
             @if($project->student_id == auth()->id() || $project->created_by == auth()->id())
                 <x-button label="Edit" icon="o-pencil" link="{{ route('student.projects.editmeetinglog',['project' => $project->getRouteKey(), 'meeting_log' => $meeting_log->getRouteKey()]) }}" class="btn-primary" />
             @else

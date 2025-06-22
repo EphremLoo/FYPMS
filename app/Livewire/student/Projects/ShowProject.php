@@ -13,6 +13,10 @@ class ShowProject extends Component
 
     public Project $project;
 
+    public string $selectedTab = 'project-details-tab';
+
+    public array $sortBy = ['column' => 'id', 'direction' => 'desc'];
+
     public function mount(): void
     {
         $this->fill($this->project);
@@ -46,6 +50,15 @@ class ShowProject extends Component
 
     public function render()
     {
-        return view('livewire.student.projects.show');
+        return view('livewire.student.projects.show', [
+            'logs' => $this->project->meetingLogs()
+                ->orderBy(...array_values($this->sortBy))
+                ->paginate(10),
+            'logHeaders' => [
+                ['key' => 'id', 'label' => '#', 'class' => 'w-1'],
+                ['key' => 'meeting_no', 'label' => 'Meeting No', 'class' => 'w-1'],
+                ['key' => 'date_time', 'label' => 'Date', 'format' => ['date', 'd/m/Y'], 'sortable' => false],
+            ],
+        ]);
     }
 }

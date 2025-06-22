@@ -29,7 +29,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/projects/create', \App\Livewire\student\Projects\CreateProject::class)->name('projects.create');
         Route::get('/projects/{project}', \App\Livewire\student\Projects\ShowProject::class)->name('projects.show');
         Route::get('/projects/{project}/edit', \App\Livewire\student\Projects\EditProject::class)->name('projects.edit');
-        Route::get('/projects/{project}/meeting-log', \App\Livewire\student\Projects\MeetingLogList::class)->name('projects.meetingloglist');
         Route::get('/projects/{project}/meeting-log/create', \App\Livewire\student\Projects\CreateMeetingLog::class)->name('projects.createmeetinglog');
         Route::get('/projects/{project}/meeting-log/{meeting_log}', \App\Livewire\student\Projects\ShowMeetingLog::class)->name('projects.showmeetinglog');
         Route::get('/projects/{project}/meeting-log/{meeting_log}/edit', \App\Livewire\student\Projects\EditMeetingLog::class)->name('projects.editmeetinglog');

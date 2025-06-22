@@ -39,7 +39,7 @@ class CreateMeetingLog extends Component
 
         MeetingLog::create($data);
         
-        $this->success('Meeting log created successfully.', redirectTo: route('student.projects.meetingloglist', $this->project->id));
+        $this->success('Meeting log created successfully.', redirectTo: route('student.projects.show', $this->project->id));
     }
 
     public function render()

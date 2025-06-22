@@ -45,14 +45,14 @@ class EditMeetingLog extends Component
         $this->meeting_log->update($data);
         
         // Toast success message and redirect
-        $this->success('Meeting log updated successfully.', redirectTo: route('student.projects.meetingloglist', $this->project->id));
+        $this->success('Meeting log updated successfully.', redirectTo: route('student.projects.showmeetinglog', ['project' => $this->project->getRouteKey(), 'meeting_log' => $this->meeting_log->getRouteKey()]));
     }
 
     // Delete action
     public function delete(MeetingLog $meeting_log): void
     {
         $meeting_log->delete();
-        $this->warning("Deleting #$meeting_log->meeting_no", position: 'toast-bottom', redirectTo: route('student.projects.meetingloglist', $this->project->id));
+        $this->warning("Deleting #$meeting_log->meeting_no", position: 'toast-bottom', redirectTo: route('student.projects.show', $this->project->id));
     }
 
     public function render()
