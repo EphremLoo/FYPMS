@@ -4,7 +4,6 @@ namespace App\Livewire\student\Projects;
 
 use App\Models\MeetingLog;
 use App\Models\Project;
-use App\Models\User;
 use Livewire\Component;
 use Livewire\Attributes\Rule;
 use Mary\Traits\Toast;
@@ -21,7 +20,7 @@ class CreateMeetingLog extends Component
     #[Rule('required')]
     public string $work_done = '';
 
-    #[Rule('required')]
+    #[Rule('sometimes')]
     public string $work_to_do = '';
 
     #[Rule('sometimes')]

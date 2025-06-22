@@ -19,9 +19,6 @@
                 <x-slot:actions separator>
                     <x-button label="Back" link="{{ route('student.projects.self') }}" class="mr-auto" />
                     @if($project->student_id == auth()->id() || $project->created_by == auth()->id())
-                        {{-- @if(false)
-                            <x-button label="Meeting Logs" icon="o-clipboard" link="{{ route('student.projects.show', $project->getRouteKey()) }}" class="btn-primary" />
-                        @endif --}}
                         <x-button label="Edit" icon="o-pencil" link="{{ route('student.projects.edit', $project->getRouteKey()) }}" class="btn-primary" />
                     @else
                         <x-button label="Apply" icon="o-paper-airplane" spinner="apply" wire:click="apply" wire:confirm="Are you sure?" class="btn-primary" />
@@ -30,21 +27,62 @@
             </x-card>
         </x-tab>
 
-        <x-tab name="meeting-logs-tab" label="Meeting Logs" icon="o-clipboard">
+        @if ($project->createdBy->id == auth()->id() || $project->student_id == auth()->id())
+            <x-tab name="meeting-logs-tab" label="Meeting Logs" icon="o-clipboard">
+                <div class="mb-4">
+                    <x-button label="Create" class="btn-primary" link="{{ route('student.projects.createmeetinglog', $project->getRouteKey()) }}" />
+                </div>
 
-            <div class="mb-4">
-                <x-button label="Create" class="btn-primary" link="{{ route('student.projects.createmeetinglog', $project->getRouteKey()) }}" />
+                <!-- TABLE  -->
+                <x-card title="Meeting Logs" shadow>
+                    <x-table :headers="$logHeaders" :rows="$logs" with-pagination>
+                        {{-- View Meeting Log --}}
+                        @scope('actions', $log)
+                            <x-button icon="o-eye" link="{{ route('student.projects.showmeetinglog', ['project' => $log->project->getRouteKey(), 'meeting_log' => $log->getRouteKey()]) }}" class="btn-ghost btn-sm text-primary" />
+                        @endscope
+                    </x-table>
+                </x-card>
+            </x-tab>
+        @endif
+    </x-tabs>  
+
+
+    <br/>
+
+
+    @if ($project->createdBy->id == auth()->id() || $project->student_id == auth()->id())
+    {{-- Input comment --}}
+    <x-header title="Comments" separator />
+
+    <x-form wire:submit="save" no-separator>
+        <x-textarea label="Comment" wire:model="text" rows="3" inline/>
+        <x-slot:actions>
+            <x-button label="Send" icon="o-paper-airplane" class="btn-primary" type="submit" spinner="save" />
+        </x-slot:actions>
+    </x-form>
+    
+    <br/>
+
+    {{-- Display Comment --}}
+    <x-card title="Comments" shadow>
+        @forelse($comments as $comment)
+            <x-hr />
+            <div class="mb-4 flex justify-between items-start">
+                <div>
+                    <span class="block font-bold">
+                        {{ $comment->createdBy->name }}
+                        <span class="text-xs text-gray-500">({{ $comment->created_at->diffForHumans() }})</span>
+                    </span>
+                    <div class="block">{!! \Illuminate\Support\Str::markdown(nl2br($comment->text)) !!}</div>
+                </div>
+                @if ($comment->created_by == auth()->id())
+                    <x-button icon="o-trash" wire:click="delete({{ $comment->getRouteKey() }})" wire:confirm="Are you sure you want to delete this comment?" class="btn-ghost btn-sm text-red-500 ml-4" />
+                @endif
             </div>
-
-            <!-- TABLE  -->
-            <x-card title="Meeting Logs" shadow>
-                <x-table :headers="$logHeaders" :rows="$logs" with-pagination>
-                    {{-- View Meeting Log --}}
-                    @scope('actions', $log)
-                        <x-button icon="o-eye" link="{{ route('student.projects.showmeetinglog', ['project' => $log->project->getRouteKey(), 'meeting_log' => $log->getRouteKey()]) }}" class="btn-ghost btn-sm text-primary" />
-                    @endscope
-                </x-table>
-            </x-card>
-        </x-tab>
-    </x-tabs>    
+        @empty
+            <div class="text-gray-500">No comments yet.</div>
+        @endforelse
+    </x-card>
+    {{ $comments->links() }}
+    @endif
 </div>

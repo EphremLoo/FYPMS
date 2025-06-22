@@ -21,7 +21,7 @@ class CreateMeetingLog extends Component
     #[Rule('required')]
     public string $work_done = '';
 
-    #[Rule('required')]
+    #[Rule('sometimes')]
     public string $work_to_do = '';
 
     #[Rule('sometimes')]

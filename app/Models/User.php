@@ -98,4 +98,9 @@ class User extends Authenticatable implements Auditable
     {
         return $this->hasMany(MeetingLog::class);
     }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comments::class, 'created_by');
+    }
 }
