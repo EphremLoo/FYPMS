@@ -33,6 +33,7 @@ class ProjectSeeder extends Seeder
                 'description' => $project,
                 'supervisor_id' => $user->id,
                 'created_by' => $user->id,
+                'year' => now()->year,
             ]);
         }
 
@@ -62,6 +63,7 @@ class ProjectSeeder extends Seeder
                 'description' => $project,
                 'student_id' => $user->id,
                 'created_by' => $user->id,
+                'year' => now()->year,
             ]);
         }
     }

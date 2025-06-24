@@ -56,6 +56,7 @@
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_ADMIN))
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('admin.dashboard') }}" />
                     <x-menu-item title="Users" icon="o-users" link="{{ route('admin.users.index') }}" />
+                    <x-menu-item title="Reports" icon="o-clipboard-document-list" link="{{ route('admin.reports.index') }}" />
                 @endif
 
                 <x-menu-item title="Profile" icon="m-user" link="{{ route('profile') }}" />

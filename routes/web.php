@@ -62,6 +62,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/users', \App\Livewire\admin\Users\UserList::class)->name('users.index');
         Route::get('/users/create', \App\Livewire\admin\Users\CreateUser::class)->name('users.create');
         Route::get('/users/{user}/edit', \App\Livewire\admin\Users\EditUser::class)->name('users.edit');
+        Route::get('/reports', \App\Livewire\admin\Reports::class)->name('reports.index');
     });
 
     Route::get('/profile', \App\Livewire\Shared\UpdateProfile::class)->name('profile');

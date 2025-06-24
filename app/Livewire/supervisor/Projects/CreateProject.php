@@ -36,6 +36,7 @@ class CreateProject extends Component
 
         $data['supervisor_id'] = auth()->id();
         $data['created_by'] = auth()->id();
+        $data['year'] = now()->year;
         Project::create($data);
 
         $this->success('Project created with success.', redirectTo: route('supervisor.projects.self'));
