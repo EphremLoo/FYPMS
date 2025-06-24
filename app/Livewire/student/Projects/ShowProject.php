@@ -5,19 +5,24 @@ namespace App\Livewire\student\Projects;
 use App\Models\Project;
 use App\Models\StudentProjectRequest;
 use App\Models\Comments;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Mary\Traits\Toast;
 use Livewire\Attributes\Rule;
 use Livewire\WithPagination;
 
 class ShowProject extends Component
 {
-    use Toast, WithPagination;
+    use Toast, WithPagination, WithFileUploads;
 
     public Project $project;
 
     #[Rule('required')]
     public string $text = '';
+
+    #[Rule('sometimes')]
+    public $file;
 
     public string $selectedTab = 'project-details-tab';
 
@@ -63,6 +68,19 @@ class ShowProject extends Component
         Comments::create($data);
 
         $this->text = ''; // Clear the text input after saving
+    }
+
+    public function uploadFile(): void
+    {
+        $path = $this->file->store(path: 'projects/' . $this->project->id, options: 'public');
+        $this->project->update(['file' => Storage::url($path)]);
+
+        $this->success('Project submitted successfully.');
+    }
+
+    public function download()
+    {
+        return Storage::disk(config('filesystems.default'))->download($this->project->file);
     }
 
     public function delete($commentId): void
