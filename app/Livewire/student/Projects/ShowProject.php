@@ -71,7 +71,7 @@ class ShowProject extends Component
 
     public function uploadFile(): void
     {
-        $path = $this->file->store(path: 'projects/' . $this->project->id, options: 'public');
+        $path = $this->file->storeAs(path: 'projects/' . $this->project->id, name: $this->project->name . '-fyp-submission.' . $this->file->getClientOriginalExtension(), options: 'public');
         $this->project->update(['file' => Storage::url($path)]);
 
         $this->success('Project submitted successfully.');
