@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', \App\Livewire\supervisor\Dashboard::class)->name('dashboard');
         Route::get('/projects', \App\Livewire\supervisor\Projects\ProjectList::class)->name('projects.index');
         Route::get('/my-projects', \App\Livewire\supervisor\Projects\MyProjects::class)->name('projects.self');
+        Route::get('/supervisor-request', \App\Livewire\supervisor\Projects\SupervisorRequest::class)->name('projects.supervisorrequest');
         Route::get('/projects/create', \App\Livewire\supervisor\Projects\CreateProject::class)->name('projects.create');
         Route::get('/projects/{project}', \App\Livewire\supervisor\Projects\ShowProject::class)->name('projects.show');
         Route::get('/projects/{project}/edit', \App\Livewire\supervisor\Projects\EditProject::class)->name('projects.edit');

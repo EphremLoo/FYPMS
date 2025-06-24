@@ -19,7 +19,7 @@
                 <div class="block">{!! \Illuminate\Support\Str::markdown(nl2br($project->description)) !!}</div>
 
                 <x-slot:actions separator>
-                    <x-button label="Back" link="{{ route('supervisor.projects.self') }}" class="mr-auto" />
+                    <x-button label="Back" link="{{ url()->previous() ?? route('supervisor.projects.self') }}" class="mr-auto" />
                     @if($project->supervisor_id == auth()->id() || $project->created_by == auth()->id())
                         <x-button label="Edit" icon="o-pencil" link="{{ route('supervisor.projects.edit', $project->getRouteKey()) }}" class="btn-primary" />
                     @endif

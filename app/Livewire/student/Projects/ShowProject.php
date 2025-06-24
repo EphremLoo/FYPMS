@@ -5,6 +5,8 @@ namespace App\Livewire\student\Projects;
 use App\Models\Project;
 use App\Models\StudentProjectRequest;
 use App\Models\Comments;
+use App\Models\SupervisorProjectRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -21,6 +23,9 @@ class ShowProject extends Component
 
     #[Rule('required')]
     public string $text = '';
+
+    #[Rule('required')]
+    public ?string $supervisor_id = null;
 
     public $file;
 
@@ -70,6 +75,36 @@ class ShowProject extends Component
         $this->text = ''; // Clear the text input after saving
     }
 
+    public function requestSupervisor(): void
+    {
+        // check if a project already has a supervisor assigned
+        if ($this->project->supervisor_id) {
+            $this->error('Project already has a supervisor assigned.');
+            return;
+        }
+
+        // check if user has already made a request for this project but with pending status
+        $request_exists = SupervisorProjectRequest::where('project_id', $this->project->id)
+        ->where('student_id', auth()->id())
+        ->where('supervisor_id', $this->supervisor_id)
+        ->where('status', SupervisorProjectRequest::STATUS_PENDING)
+        ->exists();
+        if ($request_exists) {
+            $this->error('You have already requested supervisor for this project. Please wait for the supervisor to accept your request.');
+            return;
+        }
+
+        // create a new request
+        SupervisorProjectRequest::create([
+            'project_id' => $this->project->id,
+            'student_id' => auth()->id(),
+            'supervisor_id' => $this->supervisor_id,
+            'status' => SupervisorProjectRequest::STATUS_PENDING,
+        ]);
+
+        $this->success('Supervisor request sent successfully. Please wait for the supervisor to accept your request.');
+    }
+
     public function uploadFile(): void
     {
         $path = $this->file->storeAs(path: 'projects/' . $this->project->id, name: $this->project->name . '-fyp-submission.' . $this->file->getClientOriginalExtension(), options: 'public');
@@ -79,7 +114,7 @@ class ShowProject extends Component
         $this->project->update(['file' => Storage::url($path)]);
 
         $this->success('Project submitted successfully.');
-    }
+    }    
 
     public function delete($commentId): void
     {
@@ -96,6 +131,7 @@ class ShowProject extends Component
     public function render()
     {
         return view('livewire.student.projects.show', [
+            'supervisors' => User::role(User::ROLE_SUPERVISOR)->get(),
             'logs' => $this->project->meetingLogs()
                 ->orderBy(...array_values($this->sortBy))
                 ->paginate(10),

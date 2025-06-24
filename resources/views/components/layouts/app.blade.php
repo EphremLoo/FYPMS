@@ -48,6 +48,7 @@
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('supervisor.dashboard') }}" />
                     <x-menu-item title="Projects" icon="o-book-open" link="{{ route('supervisor.projects.index') }}" />
                     <x-menu-item title="My Projects" icon="o-book-open" link="{{ route('supervisor.projects.self') }}" />
+                    <x-menu-item title="Supervisor Requests" icon="o-book-open" link="{{ route('supervisor.projects.supervisorrequest') }}" />
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_MODERATOR))
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('moderator.dashboard') }}" />
                     <x-menu-item title="My Projects" icon="o-book-open" link="{{ route('moderator.projects.self') }}" />

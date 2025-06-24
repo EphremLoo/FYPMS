@@ -3,6 +3,16 @@
 
     <x-form wire:submit="save">
         <x-input label="Name" wire:model="name" />
+
+        <x-choices-offline
+            label="Request Supervisor"
+            wire:model="supervisor_id"
+            :options="$supervisors"
+            placeholder="Search..."
+            single
+            clearable
+            searchable />
+
         <x-markdown wire:model="description" label="Description" :config="$config" />
 
         <x-slot:actions>
