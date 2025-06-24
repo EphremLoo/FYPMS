@@ -21,7 +21,6 @@ class ShowProject extends Component
     #[Rule('required')]
     public string $text = '';
 
-    #[Rule('sometimes')]
     public $file;
 
     public string $selectedTab = 'project-details-tab';
@@ -76,11 +75,6 @@ class ShowProject extends Component
         $this->project->update(['file' => Storage::url($path)]);
 
         $this->success('Project submitted successfully.');
-    }
-
-    public function download()
-    {
-        return Storage::disk(config('filesystems.default'))->download($this->project->file);
     }
 
     public function delete($commentId): void

@@ -49,15 +49,15 @@
             <x-card title="Project Submission" shadow separator class="mb-4">
                 <x-form wire:submit="uploadFile">
                     <x-file wire:model="file" label="Upload Files" hint="If you have more than 1 file, please zip it and upload" />
-
+                    @if(!empty($project->file))
+                        <a href="{{ $project->file }}" target="_blank" download class="btn btn-primary">Download Submitted Project</a>
+                    @endif
                     <x-slot:actions>
                         <x-button label="Save" icon="o-paper-airplane" spinner="uploadFile" type="submit" class="btn-primary" />
                     </x-slot:actions>
                 </x-form>
             </x-card>
-            @if(!empty($project->file))
-                <button type="button" wire:click="download">Download</button>
-            @endif
+
         </x-tab>
     </x-tabs>
 
