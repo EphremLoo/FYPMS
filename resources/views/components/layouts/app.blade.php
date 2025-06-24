@@ -51,8 +51,8 @@
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_MODERATOR))
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('moderator.dashboard') }}" />
                     <x-menu-item title="My Projects" icon="o-book-open" link="{{ route('moderator.projects.self') }}" />
-                @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_EXAMINER))
-                    <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('examiner.dashboard') }}" />
+{{--                @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_EXAMINER))--}}
+{{--                    <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('examiner.dashboard') }}" />--}}
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_ADMIN))
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('admin.dashboard') }}" />
                     <x-menu-item title="Users" icon="o-users" link="{{ route('admin.users.index') }}" />

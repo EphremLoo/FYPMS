@@ -23,14 +23,14 @@
             clearable
             searchable />
 
-        <x-choices-offline
-            label="Examiner"
-            wire:model="examiner_id"
-            :options="$examiners"
-            placeholder="Search ..."
-            single
-            clearable
-            searchable />
+{{--        <x-choices-offline--}}
+{{--            label="Examiner"--}}
+{{--            wire:model="examiner_id"--}}
+{{--            :options="$examiners"--}}
+{{--            placeholder="Search ..."--}}
+{{--            single--}}
+{{--            clearable--}}
+{{--            searchable />--}}
 
         <x-slot:actions>
             <x-button label="Delete" icon="o-trash" wire:click="delete({{ $project->getRouteKey() }})" wire:confirm="Are you sure? This process is cannot be undone." spinner class="btn-error mr-auto" />

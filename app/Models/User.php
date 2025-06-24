@@ -44,7 +44,7 @@ class User extends Authenticatable implements Auditable
         self::ROLE_ADMIN => 'admin',
         self::ROLE_MODERATOR => 'moderator',
         self::ROLE_SUPERVISOR => 'supervisor',
-        self::ROLE_EXAMINER => 'examiner',
+//        self::ROLE_EXAMINER => 'examiner',
         self::ROLE_STUDENT => 'student',
     ];
 

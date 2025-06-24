@@ -66,7 +66,7 @@ class EditProject extends Component
         return view('livewire.supervisor.projects.edit', [
             'students' => User::role(User::ROLE_STUDENT)->get(),
             'moderators' => User::role(User::ROLE_MODERATOR)->get(),
-            'examiners' => User::role(User::ROLE_EXAMINER)->get(),
+//            'examiners' => User::role(User::ROLE_EXAMINER)->get(),
             'config' => [
                 'toolbar' => ['heading', 'bold', 'italic', 'strikethrough', '|', 'code', 'quote', 'unordered-list', 'ordered-list', 'horizontal-rule', '|', 'link', 'table', '|','preview', 'side-by-side'],
                 'maxHeight' => '500px'

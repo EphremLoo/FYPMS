@@ -33,9 +33,9 @@ class Login extends Component
             if (auth()->user()->hasRole(User::ROLE_STUDENT)) {
                 return redirect()->route('student.dashboard');
             }
-            if (auth()->user()->hasRole(User::ROLE_EXAMINER)) {
-                return redirect()->route('examiner.dashboard');
-            }
+//            if (auth()->user()->hasRole(User::ROLE_EXAMINER)) {
+//                return redirect()->route('examiner.dashboard');
+//            }
         }
     }
 
@@ -67,9 +67,9 @@ class Login extends Component
             if (auth()->user()->hasRole(User::ROLE_STUDENT)) {
                 return redirect()->route('student.dashboard');
             }
-            if (auth()->user()->hasRole(User::ROLE_EXAMINER)) {
-                return redirect()->route('examiner.dashboard');
-            }
+//            if (auth()->user()->hasRole(User::ROLE_EXAMINER)) {
+//                return redirect()->route('examiner.dashboard');
+//            }
         }
 
         $this->addError('email', 'The provided credentials do not match our records.');

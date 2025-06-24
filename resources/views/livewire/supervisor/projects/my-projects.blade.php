@@ -24,9 +24,9 @@
             @scope('cell_moderator_id', $project)
             <span>{{ $project->moderator?->name }}</span>
             @endscope
-            @scope('cell_examiner_id', $project)
-            <span>{{ $project->examiner?->name }}</span>
-            @endscope
+{{--            @scope('cell_examiner_id', $project)--}}
+{{--            <span>{{ $project->examiner?->name }}</span>--}}
+{{--            @endscope--}}
             @scope('cell_status', $project)
             <x-badge :value="$project->status_text" class="badge-primary" />
             @endscope

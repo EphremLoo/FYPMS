@@ -48,17 +48,17 @@ class UserSeeder extends Seeder
             $id++;
         }
 
-        for ($i = 1; $i <= 10; $i++) {
-            $user = User::create([
-                'name' => 'examiner' . $i,
-                'mmu_id' => $id,
-                'email' => 'examiner' . $i . '@example.com',
-                'status' => User::STATUS_ACTIVE,
-                'password' => Hash::make('12345678'),
-            ]);
-            $user->assignRole(User::ROLE_EXAMINER);
-            $id++;
-        }
+//        for ($i = 1; $i <= 10; $i++) {
+//            $user = User::create([
+//                'name' => 'examiner' . $i,
+//                'mmu_id' => $id,
+//                'email' => 'examiner' . $i . '@example.com',
+//                'status' => User::STATUS_ACTIVE,
+//                'password' => Hash::make('12345678'),
+//            ]);
+//            $user->assignRole(User::ROLE_EXAMINER);
+//            $id++;
+//        }
 
         $id = 1151105600;
         for ($i = 1; $i <= 50; $i++) {

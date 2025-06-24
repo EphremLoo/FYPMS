@@ -52,9 +52,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/projects/{project}', \App\Livewire\moderator\Projects\ShowProject::class)->name('projects.show');
     });
 
-    Route::middleware([\App\Http\Middleware\Examiner::class])->prefix('examiner')->name('examiner.')->group(function () {
-        Route::get('/dashboard', \App\Livewire\examiner\Dashboard::class)->name('dashboard');
-    });
+//    Route::middleware([\App\Http\Middleware\Examiner::class])->prefix('examiner')->name('examiner.')->group(function () {
+//        Route::get('/dashboard', \App\Livewire\examiner\Dashboard::class)->name('dashboard');
+//    });
 
     Route::middleware([\App\Http\Middleware\Admin::class])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', \App\Livewire\admin\Dashboard::class)->name('dashboard');

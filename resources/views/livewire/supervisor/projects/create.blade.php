@@ -23,14 +23,14 @@
             clearable
             searchable />
 
-        <x-choices-offline
-            label="Examiner"
-            wire:model="examiner_id"
-            :options="$examiners"
-            placeholder="Search ..."
-            single
-            clearable
-            searchable />
+{{--        <x-choices-offline--}}
+{{--            label="Examiner"--}}
+{{--            wire:model="examiner_id"--}}
+{{--            :options="$examiners"--}}
+{{--            placeholder="Search ..."--}}
+{{--            single--}}
+{{--            clearable--}}
+{{--            searchable />--}}
 
         <x-slot:actions>
             <x-button label="Cancel" link="{{ route('supervisor.projects.self') }}" />
