@@ -85,7 +85,7 @@
                 <div>
                     <span class="block font-bold">
                         {{ $comment->createdBy->name }}
-                        <span class="text-xs text-gray-500">({{ $comment->created_at->diffForHumans() }})</span>
+                         <span class="text-xs text-gray-500">({{ $project->created_at }}, {{ $comment->created_at->diffForHumans() }})</span>
                     </span>
                     <div class="block">{!! \Illuminate\Support\Str::markdown(nl2br($comment->text)) !!}</div>
                 </div>
