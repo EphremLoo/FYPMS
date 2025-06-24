@@ -49,7 +49,8 @@ class CreateProject extends Component
 //            'examiners' => User::role(User::ROLE_EXAMINER)->get(),
             'config' => [
                 'toolbar' => ['heading', 'bold', 'italic', 'strikethrough', '|', 'code', 'quote', 'unordered-list', 'ordered-list', 'horizontal-rule', '|', 'link', 'table', '|','preview', 'side-by-side'],
-                'maxHeight' => '500px'
+                'maxHeight' => '500px',
+                'uploadImage' => false,
             ],
             'statuses' => [
                 [

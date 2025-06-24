@@ -33,17 +33,17 @@ class EditMeetingLog extends Component
         $this->work_to_do = $meeting_log->work_to_do ?? '';
         $this->problems_encountered = $meeting_log->problems_encountered ?? '';
         $this->comments = $meeting_log->comments ?? '';
-    }   
+    }
 
-    public function save(): void 
+    public function save(): void
     {
         $data = $this->validate();
         $data['project_id'] = $this->project->id;
         $data['updated_by'] = auth()->id();
-        
+
         // Update the meeting log
         $this->meeting_log->update($data);
-        
+
         // Toast success message and redirect
         $this->success('Meeting log updated successfully.', redirectTo: route('supervisor.projects.show', $this->project->id));
     }
@@ -60,7 +60,8 @@ class EditMeetingLog extends Component
         return view('livewire.supervisor.projects.edit-meeting-log', [
             'config' => [
                 'toolbar' => ['heading', 'bold', 'italic', 'strikethrough', '|', 'code', 'quote', 'unordered-list', 'ordered-list', 'horizontal-rule', '|', 'link', 'table', '|','preview'],
-                'maxHeight' => '300px'
+                'maxHeight' => '300px',
+                'uploadImage' => false,
             ]
         ]);
     }

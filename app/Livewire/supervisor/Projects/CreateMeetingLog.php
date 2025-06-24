@@ -38,7 +38,7 @@ class CreateMeetingLog extends Component
         $data['meeting_no'] = $this->project->meetingLogs()->count() + 1;
 
         MeetingLog::create($data);
-        
+
         $this->success('Meeting log created successfully.', redirectTo: route('supervisor.projects.show', $this->project->id));
     }
 
@@ -47,7 +47,8 @@ class CreateMeetingLog extends Component
         return view('livewire.supervisor.projects.create-meeting-log', [
             'config' => [
                 'toolbar' => ['heading', 'bold', 'italic', 'strikethrough', '|', 'code', 'quote', 'unordered-list', 'ordered-list', 'horizontal-rule', '|', 'link', 'table', '|','preview'],
-                'maxHeight' => '300px'
+                'maxHeight' => '300px',
+                'uploadImage' => false,
             ]
         ]);
     }
