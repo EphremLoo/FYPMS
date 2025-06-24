@@ -20,6 +20,8 @@ class ShowProject extends Component
     #[Rule('required')]
     public string $text = '';
 
+    public int $moderator_marks = 0;
+
     public array $sortBy = ['column' => 'id', 'direction' => 'desc'];
 
     public function mount(): void
@@ -52,6 +54,16 @@ class ShowProject extends Component
         Comments::create($data);
 
         $this->text = ''; // Clear the text input after saving
+    }
+
+    public function saveProjectMarks(): void
+    {
+        $data = $this->validate([
+            'moderator_marks' => 'required|numeric',
+        ]);
+        $this->project->update(['moderator_marks' => $data['moderator_marks']]);
+
+        $this->success('Project marks updated successfully.');;
     }
 
     public function render()

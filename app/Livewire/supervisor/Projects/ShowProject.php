@@ -20,6 +20,8 @@ class ShowProject extends Component
     #[Rule('required')]
     public string $text = '';
 
+    public int $supervisor_marks = 0;
+
     public string $selectedTab = 'project-details-tab';
 
     public array $sortBy = ['column' => 'id', 'direction' => 'desc'];
@@ -54,6 +56,16 @@ class ShowProject extends Component
         Comments::create($data);
 
         $this->text = ''; // Clear the text input after saving
+    }
+
+    public function saveProjectMarks(): void
+    {
+        $data = $this->validate([
+            'supervisor_marks' => 'required|numeric',
+        ]);
+        $this->project->update(['supervisor_marks' => $data['supervisor_marks']]);
+
+        $this->success('Project marks updated successfully.');;
     }
 
     public function delete($commentId): void

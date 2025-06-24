@@ -10,6 +10,8 @@
                 <span class="block mb-4">Student: {{ $project->student?->name }}</span>
                 <span class="block mb-4">Created By: {{ $project->createdBy?->name }}</span>
                 <span class="block mb-4">Status: <x-badge value="{{ $project->status_text }}" class="badge-primary" /></span>
+                <span class="block mb-4">Supervisor Marks: {{ $project->supervisor_marks }}</span>
+                <span class="block mb-4">Moderator Marks: {{ $project->moderator_marks }}</span>
 
                 <x-hr />
 

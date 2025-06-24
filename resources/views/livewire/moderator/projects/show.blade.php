@@ -6,10 +6,12 @@
             <x-card title="{{ $project->name }}" shadow separator class="mb-8">
                 <span class="block mb-4">Supervisor: {{ $project->supervisor?->name }}</span>
                 <span class="block mb-4">Moderator: {{ $project->moderator?->name }}</span>
-                <span class="block mb-4">Examiner: {{ $project->examiner?->name }}</span>
+{{--                <span class="block mb-4">Examiner: {{ $project->examiner?->name }}</span>--}}
                 <span class="block mb-4">Student: {{ $project->student?->name }}</span>
                 <span class="block mb-4">Created By: {{ $project->createdBy?->name }}</span>
                 <span class="block mb-4">Status: <x-badge value="{{ $project->status_text }}" class="badge-primary" /></span>
+                <span class="block mb-4">Supervisor Marks: {{ $project->supervisor_marks }}</span>
+                <span class="block mb-4">Moderator Marks: {{ $project->moderator_marks }}</span>
 
                 <x-hr />
 
@@ -42,10 +44,19 @@
 
         <x-tab name="submission-tab" label="Submission" icon="c-arrow-up-on-square">
             @if(!empty($project->file))
-                <a href="{{ $project->file }}" target="_blank" download class="btn btn-primary">Download Submitted Project</a>
+                <a href="{{ $project->file }}" target="_blank" download class="btn btn-primary mb-4">Download Submitted Project</a>
             @else
                 <span>There is no submission.</span>
             @endif
+            <x-card Title="Project Marks" shadow>
+                <x-form wire:submit="saveProjectMarks">
+                    <x-input label="Marks" wire:model="moderator_marks" type="number" />
+
+                    <x-slot:actions>
+                        <x-button label="Save" icon="o-paper-airplane" spinner="saveProjectMarks" type="submit" class="btn-primary" />
+                    </x-slot:actions>
+                </x-form>
+            </x-card>
         </x-tab>
     </x-tabs>
 
