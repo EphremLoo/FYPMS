@@ -22,9 +22,12 @@ return new class extends Migration
             $table->foreignId('supervisor_id')->nullable()->constrained('users');
             $table->foreignId('examiner_id')->nullable()->constrained('users');
             $table->foreignId('created_by')->constrained('users');
-            $table->string('file')->nullable()->after('created_by');
+            $table->string('file')->nullable();
             $table->integer('supervisor_marks')->default(0);
             $table->integer('moderator_marks')->default(0);
+            $table->integer('total_marks')->default(0);
+            $table->string('grade')->nullable();
+            $table->year('year');
             $table->timestamps();
             $table->softDeletes();
         });
