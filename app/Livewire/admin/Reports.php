@@ -75,7 +75,7 @@ class Reports extends Component
             $row++;
         }
 
-        $fileName = 'Project_Report_' . now()->year . '.xlsx';
+        $fileName = 'Project_Report_' . now()->toDateString() . '.xlsx';
         $filePath = 'public/' . $fileName;
 
         $writer = new Xlsx($spreadsheet);
