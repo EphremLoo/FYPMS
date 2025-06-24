@@ -92,11 +92,6 @@ class Reports extends Component
         $this->success('Report generated successfully.', redirectTo: route('admin.reports.index'));
     }
 
-    public function download(Report $report)
-    {
-        return Response()->download($report->file);
-    }
-
     public function render()
     {
         return view('livewire.admin.reports', [
