@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', \App\Livewire\moderator\Dashboard::class)->name('dashboard');
         Route::get('/my-projects', \App\Livewire\moderator\Projects\MyProjects::class)->name('projects.self');
         Route::get('/projects/{project}', \App\Livewire\moderator\Projects\ShowProject::class)->name('projects.show');
+        Route::get('/projects/{project}/meeting-log/{meeting_log}', \App\Livewire\moderator\Projects\ShowMeetingLog::class)->name('projects.showmeetinglog');
     });
 
 //    Route::middleware([\App\Http\Middleware\Examiner::class])->prefix('examiner')->name('examiner.')->group(function () {

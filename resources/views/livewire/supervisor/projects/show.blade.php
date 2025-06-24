@@ -65,6 +65,15 @@
                 </x-card>
             </x-tab>
         @endif
+
+        <x-tab name="submission-tab" label="Submission" icon="c-arrow-up-on-square">
+            @if(!empty($project->file))
+                <a href="{{ $project->file }}" target="_blank" download class="btn btn-primary">Download Submitted Project</a>
+            @else
+                <span>There is no submission.</span>
+            @endif
+
+        </x-tab>
     </x-tabs>
 
     <br/>

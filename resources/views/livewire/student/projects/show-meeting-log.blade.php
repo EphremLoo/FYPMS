@@ -11,7 +11,7 @@
 
         <br/>
         <br/>
-        
+
         <span class="block mb-4 font-bold">Work To Do: </span>
         <div class="block">{!! \Illuminate\Support\Str::markdown(nl2br($meeting_log->work_to_do)) !!}</div>
 
@@ -31,8 +31,6 @@
             <x-button label="Back" link="{{ route('student.projects.show', $project->getRouteKey()) }}" class="mr-auto" />
             @if($project->student_id == auth()->id() || $project->created_by == auth()->id())
                 <x-button label="Edit" icon="o-pencil" link="{{ route('student.projects.editmeetinglog',['project' => $project->getRouteKey(), 'meeting_log' => $meeting_log->getRouteKey()]) }}" class="btn-primary" />
-            @else
-                <x-button label="Apply" icon="o-paper-airplane" spinner="apply" wire:click="apply" wire:confirm="Are you sure?" class="btn-primary" />
             @endif
         </x-slot:actions>
     </x-card>
