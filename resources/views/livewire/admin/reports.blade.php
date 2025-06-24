@@ -15,19 +15,11 @@
     <!-- TABLE  -->
     <x-card shadow>
         <div class="mb-4">
-            <x-button label="Generate Student Report" class="btn-primary" link="{{ route('admin.users.create') }}" />
+            <x-button label="Generate Student Report" class="btn-primary" wire:click="generateReport" />
         </div>
-        <x-table :headers="$headers" :rows="$users" :sort-by="$sortBy" with-pagination>
-            @scope('cell_role', $user)
-            @foreach($user->roles as $role)
-                <x-badge :value="$role->name" class="badge-primary" />
-            @endforeach
-            @endscope
-            @scope('cell_status_text', $user)
-            <x-badge :value="$user->status_text" :class="$user->status_color" />
-            @endscope
-            @scope('actions', $user)
-            <x-button icon="o-pencil" link="{{ route('admin.users.edit', $user->getRouteKey()) }}" class="btn-ghost btn-sm text-primary" />
+        <x-table :headers="$headers" :rows="$reports" :sort-by="$sortBy" with-pagination>
+            @scope('actions', $report)
+            <a href="{{ $report->file }}" target="_blank" download>Download</a>
             @endscope
         </x-table>
     </x-card>
