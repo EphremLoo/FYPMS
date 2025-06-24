@@ -26,7 +26,7 @@ return new class extends Migration
             $table->integer('supervisor_marks')->default(0);
             $table->integer('moderator_marks')->default(0);
             $table->integer('total_marks')->default(0);
-            $table->string('grade')->nullable();
+            $table->char('grade')->nullable();
             $table->year('year');
             $table->timestamps();
             $table->softDeletes();
