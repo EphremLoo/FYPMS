@@ -49,11 +49,11 @@
         </x-tab>
     </x-tabs>
 
-    <br/>
+    <x-hr />
 
     @if ($project->moderator_id == auth()->id())
         {{-- Input comment --}}
-        <x-header title="Comments" separator />
+        <x-header title="Comments" />
 
         <x-form wire:submit="save" no-separator>
             <x-textarea label="Comment" wire:model="text" rows="3" inline/>
@@ -65,9 +65,8 @@
         <br/>
 
         {{-- Display Comment --}}
-        <x-card title="Comments" shadow>
+        <x-card shadow>
             @forelse($comments as $comment)
-                <x-hr />
                 <div class="mb-4 flex justify-between items-start">
                     <div>
                     <span class="block font-bold">
@@ -80,6 +79,9 @@
                         <x-button icon="o-trash" wire:click="delete({{ $comment->getRouteKey() }})" wire:confirm="Are you sure you want to delete this comment?" class="btn-ghost btn-sm text-red-500 ml-4" />
                     @endif
                 </div>
+                @if(!$loop->last)
+                    <x-hr />
+                @endif
             @empty
                 <div class="text-gray-500">No comments yet.</div>
             @endforelse
