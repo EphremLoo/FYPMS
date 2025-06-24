@@ -11,6 +11,7 @@ use Livewire\WithFileUploads;
 use Mary\Traits\Toast;
 use Livewire\Attributes\Rule;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\File;
 
 class ShowProject extends Component
 {
@@ -72,6 +73,9 @@ class ShowProject extends Component
     public function uploadFile(): void
     {
         $path = $this->file->storeAs(path: 'projects/' . $this->project->id, name: $this->project->name . '-fyp-submission.' . $this->file->getClientOriginalExtension(), options: 'public');
+        if (!empty($this->project->file)) {
+            File::delete($this->project->file);
+        }
         $this->project->update(['file' => Storage::url($path)]);
 
         $this->success('Project submitted successfully.');
