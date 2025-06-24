@@ -62,7 +62,7 @@ class Reports extends Component
         $sheet->setCellValue('E1', 'Supervisor Name');;
         $sheet->setCellValue('F1', 'Moderator Name');;
 
-        $projects = Project::where('year', now()->year)->get(['name', 'total_marks']);
+        $projects = Project::where('year', now()->year)->whereNotNull('student_id')->whereNotNull('supervisor_id')->whereNotNull('moderator_id')->get(['name', 'total_marks']);
 
         $row = 2; // Start from the second row
         foreach ($projects as $project) {
@@ -75,7 +75,7 @@ class Reports extends Component
             $row++;
         }
 
-        $fileName = 'Projects_Report_' . now()->year . '.xlsx';
+        $fileName = 'Project_Report_' . now()->year . '.xlsx';
         $filePath = 'public/' . $fileName;
 
         $writer = new Xlsx($spreadsheet);
