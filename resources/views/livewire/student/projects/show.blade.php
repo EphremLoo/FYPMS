@@ -22,7 +22,9 @@
                 <x-slot:actions separator>
                     <x-button label="Back" link="{{ url()->previous() ?? route('student.projects.self') }}" class="mr-auto" />
                     @if($project->student_id == auth()->id() || $project->created_by == auth()->id())
-                        <x-button label="Edit" icon="o-pencil" link="{{ route('student.projects.edit', $project->getRouteKey()) }}" class="btn-primary" />
+                        @if(  $project->status == App\Models\Project::STATUS_PROPOSED || $project->status == App\Models\Project::STATUS_REJECTED )
+                            <x-button label="Edit" icon="o-pencil" link="{{ route('student.projects.edit', $project->getRouteKey()) }}" class="btn-primary" />\
+                        @endif
                     @else
                         <x-button label="Apply" icon="o-paper-airplane" spinner="apply" wire:click="apply" wire:confirm="Are you sure?" class="btn-primary" />
                     @endif

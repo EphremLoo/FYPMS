@@ -112,6 +112,7 @@ class ShowProject extends Component
             File::delete($this->project->file);
         }
         $this->project->update(['file' => Storage::url($path)]);
+        $this->project->update(['status' => Project::STATUS_COMPLETED]);
 
         $this->success('Project submitted successfully.');
     }    

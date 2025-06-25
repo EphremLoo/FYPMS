@@ -35,7 +35,9 @@ class ShowProject extends Component
     {
         $studentProjectRequest->update(['status' => StudentProjectRequest::STATUS_APPROVED]);
         $this->project->update(['student_id' => $studentProjectRequest->student_id]);
-        StudentProjectRequest::where('student_id', $studentProjectRequest->student_id)->where('id', '<>', $studentProjectRequest->id)->update(['status' => StudentProjectRequest::STATUS_WITHDRAWN]);
+        StudentProjectRequest::where('student_id', $studentProjectRequest->student_id)
+            ->where('id', '<>', $studentProjectRequest->id)
+            ->update(['status' => StudentProjectRequest::STATUS_WITHDRAWN]);
 
         $this->success('Request approved successfully.');
     }

@@ -25,6 +25,11 @@ class SupervisorRequest extends Component
 
         // Update the project with the supervisor ID
         $supervisorProjectRequest->project()->update(['supervisor_id' => $supervisorProjectRequest->supervisor_id]);
+
+        // Withdraw other requests for the same student
+        SupervisorProjectRequest::where('student_id', $supervisorProjectRequest->student_id)
+            ->where('id', '<>', $supervisorProjectRequest->id)
+            ->update(['status' => SupervisorProjectRequest::STATUS_WITHDRAWN]);
         
         $this->success('Request accepted successfully.');
     }

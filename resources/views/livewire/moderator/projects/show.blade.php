@@ -20,8 +20,9 @@
 
                 <x-slot:actions separator>
                     <x-button label="Back" link="{{ route('moderator.projects.self') }}" class="mr-auto" />
-                    @if($project->supervisor_id == auth()->id() || $project->created_by == auth()->id())
-                        <x-button label="Edit" icon="o-pencil" link="{{ route('moderator.projects.edit', $project->getRouteKey()) }}" class="btn-primary" />
+                    @if($project->status == \App\Models\Project::STATUS_PROPOSED || $project->status == \App\Models\Project::STATUS_REJECTED)
+                        <x-button label="Approve" icon="o-check" wire:click="approve" class="btn-success" />
+                        <x-button label="Reject" icon="o-x-mark" wire:click="reject" class="btn-error" />
                     @endif
                 </x-slot:actions>
 

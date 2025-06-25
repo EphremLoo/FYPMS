@@ -5,14 +5,14 @@
         <x-input label="Name" wire:model="name" />
         <x-markdown wire:model="description" label="Description" :config="$config" />
 
-        <x-choices-offline
+        {{-- <x-choices-offline
             label="Student"
             wire:model="student_id"
             :options="$students"
             placeholder="Search ..."
             single
             clearable
-            searchable />
+            searchable /> --}}
 
         <x-choices-offline
             label="Moderator"

@@ -43,7 +43,7 @@
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('student.dashboard') }}" />
                     <x-menu-item title="Projects" icon="o-book-open" link="{{ route('student.projects.index') }}" />
                     <x-menu-item title="My Projects" icon="o-book-open" link="{{ route('student.projects.self') }}" />
-                    <x-menu-item title="Project Requests" icon="o-book-open" link="{{ route('student.projects.requests') }}" />
+                    <x-menu-item title="My Requests" icon="o-book-open" link="{{ route('student.projects.requests') }}" />
                 @elseif(Auth()->user()->hasRole(\App\Models\User::ROLE_SUPERVISOR))
                     <x-menu-item title="Dashboard" icon="o-sparkles" link="{{ route('supervisor.dashboard') }}" />
                     <x-menu-item title="Projects" icon="o-book-open" link="{{ route('supervisor.projects.index') }}" />

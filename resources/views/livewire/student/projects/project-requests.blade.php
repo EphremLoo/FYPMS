@@ -6,9 +6,10 @@
         </x-slot:actions>
     </x-header>
 
-    <!-- TABLE  -->
+    <!-- Project Request Table  -->
     <x-card shadow>
-        <x-table :headers="$headers" :rows="$studentProjectRequests" :sort-by="$sortBy" with-pagination>
+        <x-header title="Project Requests" size="text-xl" />
+        <x-table :headers="$projectHeaders" :rows="$studentProjectRequests" :sort-by="$sortBy" with-pagination>
             @scope('cell_project_id', $studentProjectRequest)
             <span>{{ $studentProjectRequest->project->name }}</span>
             @endscope
@@ -17,7 +18,30 @@
             @endscope
             @scope('actions', $studentProjectRequest)
             @if($studentProjectRequest->status == \App\Models\StudentProjectRequest::STATUS_PENDING)
-                <x-button label="Withdraw" wire:click="withdraw({{ $studentProjectRequest->getRouteKey() }})" wire:confirm="Are you sure? You will need to apply again if you withdraw your request." class="btn-error text-white" />
+                <x-button label="Withdraw" wire:click="withdrawProjectRequest({{ $studentProjectRequest->getRouteKey() }})" wire:confirm="Are you sure? You will need to apply again if you withdraw your request." class="btn-error text-white" />
+            @endif
+            @endscope
+        </x-table>
+    </x-card>
+
+    <br/>
+
+    <!-- Supervisor Request Table  -->
+    <x-card shadow>
+        <x-header title="Supervisor Requests" size="text-xl" />
+        <x-table :headers="$supervisorHeaders" :rows="$supervisorProjectRequests" :sort-by="$sortBy" with-pagination>
+            @scope('cell_project_id', $supervisorProjectRequest)
+            <span>{{ $supervisorProjectRequest->project->name }}</span>
+            @endscope
+            @scope('cell_supervisor_id', $supervisorProjectRequest)
+            <span>{{ $supervisorProjectRequest->supervisor->name }}</span>
+            @endscope
+            @scope('cell_status_text', $supervisorProjectRequest)
+            <x-badge :value="$supervisorProjectRequest->status_text" class="badge-primary" />
+            @endscope
+            @scope('actions', $supervisorProjectRequest)
+            @if($supervisorProjectRequest->status == \App\Models\SupervisorProjectRequest::STATUS_PENDING)
+                <x-button label="Withdraw" wire:click="withdrawSupervisorRequest({{ $supervisorProjectRequest->getRouteKey() }})" wire:confirm="Are you sure? You will need to request again if you withdraw your request." class="btn-error text-white" />
             @endif
             @endscope
         </x-table>

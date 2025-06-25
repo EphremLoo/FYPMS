@@ -3,6 +3,7 @@
 namespace App\Livewire\student\Projects;
 
 use App\Models\StudentProjectRequest;
+use App\Models\SupervisorProjectRequest;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Mary\Traits\Toast;
@@ -17,9 +18,9 @@ class ProjectRequest extends Component
 
     public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
 
-    public $title = 'Project Requests';
+    public $title = 'Requests';
 
-    public function withdraw(StudentProjectRequest $studentProjectRequest)
+    public function withdrawProjectRequest(StudentProjectRequest $studentProjectRequest)
     {
         if ($studentProjectRequest->status === StudentProjectRequest::STATUS_WITHDRAWN) {
             $this->error('Project request already withdrawn.');
@@ -31,13 +32,34 @@ class ProjectRequest extends Component
         $this->success('Project withdrawn successfully.');
     }
 
+    public function withdrawSupervisorRequest(SupervisorProjectRequest $supervisorProjectRequest)
+    {
+        if ($supervisorProjectRequest->status === SupervisorProjectRequest::STATUS_WITHDRAWN) {
+            $this->error('Project request already withdrawn.');
+        }
+
+        $supervisorProjectRequest->update(['status' => SupervisorProjectRequest::STATUS_WITHDRAWN]);
+        $this->success('Request withdrawn successfully.');
+    }
+
     public function render()
     {
         return view('livewire.student.projects.project-requests', [
-            'studentProjectRequests' => StudentProjectRequest::where('student_id', auth()->id())->latest()->paginate(10),
-            'headers' => [
+            'studentProjectRequests' => StudentProjectRequest::where('student_id', auth()->id())
+                ->latest()
+                ->paginate(10),
+            'projectHeaders' => [
                 ['key' => 'id', 'label' => '#', ],
                 ['key' => 'project_id', 'label' => 'Project',],
+                ['key' => 'status_text', 'label' => 'Status',],
+            ],
+            'supervisorProjectRequests' => SupervisorProjectRequest::where('student_id', auth()->id())
+                ->latest()
+                ->paginate(10),
+            'supervisorHeaders' => [
+                ['key' => 'id', 'label' => '#', ],
+                ['key' => 'project_id', 'label' => 'Project',],
+                ['key' => 'supervisor_id', 'label' => 'Supervisor',],
                 ['key' => 'status_text', 'label' => 'Status',],
             ],
         ]);

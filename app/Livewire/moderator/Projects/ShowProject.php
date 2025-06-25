@@ -29,20 +29,19 @@ class ShowProject extends Component
         $this->fill($this->project);
     }
 
-    public function approve(StudentProjectRequest $studentProjectRequest): void
+    public function approve(): void
     {
-        $studentProjectRequest->update(['status' => StudentProjectRequest::STATUS_APPROVED]);
-        $this->project->update(['student_id' => $studentProjectRequest->student_id]);
-        StudentProjectRequest::where('student_id', $studentProjectRequest->student_id)->where('id', '<>', $studentProjectRequest->id)->update(['status' => StudentProjectRequest::STATUS_WITHDRAWN]);
+        $this->project->update(['status' => Project::STATUS_IN_PROGRESS]);
+        $this->success('Project approved successfully.');
 
-        $this->success('Request approved successfully.');
+        Project::where('created_by', $this->project->student->id)
+            ->update(['moderator_id' => auth()->id()]);
     }
 
-    public function reject(StudentProjectRequest $studentProjectRequest): void
+    public function reject(): void
     {
-        $studentProjectRequest->update(['status' => StudentProjectRequest::STATUS_REJECTED]);
-
-        $this->success('Request rejected successfully.');
+        $this->project->update(['status' => Project::STATUS_REJECTED]);
+        $this->success('Project rejected successfully.');
     }
 
     public function save(): void
