@@ -50,8 +50,8 @@ class Login extends Component
                 request()->session()->invalidate();
                 request()->session()->regenerateToken();
 
-                $this->addError('email', 'The provided credentials do not match our records.');
-                return redirect()->route('login');
+                $this->addError('email', 'This account is not has not be approved yet');
+                return back();
             }
             request()->session()->regenerate();
 
