@@ -16,6 +16,12 @@ class CreateProject extends Component
     public string $name = '';
 
     #[Rule('required')]
+    public ?int $project_type = 0;
+
+    #[Rule('required')]
+    public ?int $major = 0;
+
+    #[Rule('required')]
     public string $description = '';
 
     #[Rule('sometimes')]
@@ -52,6 +58,38 @@ class CreateProject extends Component
                 'toolbar' => ['heading', 'bold', 'italic', 'strikethrough', '|', 'code', 'quote', 'unordered-list', 'ordered-list', 'horizontal-rule', '|', 'link', 'table', '|','preview', 'side-by-side'],
                 'maxHeight' => '500px',
                 'uploadImage' => false,
+            ],
+            'projectTypes' => [
+                [
+                    'id' => Project::project_type_application,
+                    'name' => 'Application'
+                ],
+                [
+                    'id' => Project::project_type_research,
+                    'name' => 'Research'
+                ],
+                [
+                    'id' => Project::project_type_hybrid,
+                    'name' => 'Hybrid'
+                ],
+            ],   
+            'majors' => [
+                [
+                    'id' => Project::major_software_engineering,
+                    'name' => 'Software Engineering'
+                ],
+                [
+                    'id' => Project::major_data_science,
+                    'name' => 'Data Science'
+                ],
+                [
+                    'id' => Project::major_game_development,
+                    'name' => 'Game Development'
+                ],
+                [
+                    'id' => Project::major_cybersecurity,
+                    'name' => 'Cybersecurity'
+                ],
             ],
             'statuses' => [
                 [

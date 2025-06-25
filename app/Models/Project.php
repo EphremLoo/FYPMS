@@ -32,6 +32,28 @@ class Project extends Model implements Auditable
         self::STATUS_REJECTED => 'Rejected',
         self::STATUS_COMPLETED => 'Completed',
     ];
+    
+    CONST project_type_application = 0;
+    CONST project_type_research = 1;
+    CONST project_type_hybrid = 2;
+
+    CONST PROJECT_TYPE_ARRAY = [
+        self::project_type_application => 'Application',
+        self::project_type_research => 'Research',
+        self::project_type_hybrid => 'Hybrid',
+    ];
+
+    CONST major_software_engineering = 0;
+    CONST major_data_science = 1;
+    CONST major_game_development = 2;
+    CONST major_cybersecurity = 3;
+
+    CONST MAJOR_ARRAY = [
+        self::major_software_engineering => 'Software Engineering',
+        self::major_data_science => 'Data Science',
+        self::major_game_development => 'Game Development',
+        self::major_cybersecurity => 'Cybersecurity',
+    ];
 
     public function getStatusTextAttribute()
     {
@@ -71,15 +93,5 @@ class Project extends Model implements Auditable
     public function comments(): HasMany
     {
         return $this->hasMany(Comments::class);
-    }
-
-    public function studentProjectRequests(): hasMany
-    {
-        return $this->hasMany(SupervisorProjectRequest::class);
-    }
-
-    public function supervisorProjectRequests(): hasMany
-    {
-        return $this->hasMany(SupervisorProjectRequest::class);
     }
 }

@@ -23,6 +23,8 @@ return new class extends Migration
             $table->foreignId('examiner_id')->nullable()->constrained('users');
             $table->foreignId('created_by')->constrained('users');
             $table->string('file')->nullable();
+            $table->tinyInteger('project_type')->default(0);
+            $table->tinyInteger('major')->default(0);
             $table->integer('supervisor_marks')->default(0);
             $table->integer('moderator_marks')->default(0);
             $table->integer('total_marks')->default(0);

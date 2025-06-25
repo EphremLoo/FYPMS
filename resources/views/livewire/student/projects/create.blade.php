@@ -13,6 +13,9 @@
             clearable
             searchable />
 
+        <x-select label="Project Type" wire:model="project_type" :options="$projectTypes" />
+        <x-select label="Major" wire:model="major" :options="$majors" />
+
         <x-markdown wire:model="description" label="Description" :config="$config" />
 
         <x-slot:actions>
