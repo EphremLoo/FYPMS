@@ -83,6 +83,15 @@ class ShowProject extends Component
             return;
         }
 
+        // check if user has already has a project with a supervisor assigned
+        $exists = Project::where('student_id', auth()->id())
+            ->whereNotNull('supervisor_id')
+            ->exists();
+        if ($exists) {
+            $this->error('You already have a project with a supervisor assigned. You cannot request another supervisor for a different project.');
+            return;
+        }
+
         // check if user has already made a request for this project but with pending status
         $request_exists = SupervisorProjectRequest::where('project_id', $this->project->id)
         ->where('student_id', auth()->id())

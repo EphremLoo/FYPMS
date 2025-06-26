@@ -71,7 +71,6 @@ class EditProject extends Component
         }
 
         $this->project->supervisorProjectRequests()->delete();
-
         $project->delete();
         $this->error("Deleting #$project->name", redirectTo: route('student.projects.index'));
     }

@@ -18,13 +18,13 @@ class CreateProject extends Component
     public string $name = '';
 
     #[Rule('required')]
-    public string $description = '';
-
-    #[Rule('required')]
     public ?int $project_type = 0;
 
     #[Rule('required')]
     public ?int $major = 0;
+
+    #[Rule('required')]
+    public string $description = '';
     
     #[Rule('sometimes')]
     public ?string $student_id = null;
@@ -81,7 +81,6 @@ class CreateProject extends Component
     {
         return view('livewire.student.projects.create', [
             'students' => User::role(User::ROLE_STUDENT)->get(),
-            'supervisors' => User::role(User::ROLE_SUPERVISOR)->get(),
             'projectTypes' => [
                 [
                     'id' => Project::project_type_application,

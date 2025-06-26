@@ -94,4 +94,9 @@ class Project extends Model implements Auditable
     {
         return $this->hasMany(Comments::class);
     }
+
+    public function supervisorProjectRequests(): hasMany
+    {
+        return $this->hasMany(SupervisorProjectRequest::class);
+    }
 }

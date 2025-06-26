@@ -3,16 +3,6 @@
 
     <x-form wire:submit="save">
         <x-input label="Name" wire:model="name" />
-
-        <x-choices-offline
-            label="Request Supervisor"
-            wire:model="supervisor_id"
-            :options="$supervisors"
-            placeholder="Search..."
-            single
-            clearable
-            searchable />
-
         <x-select label="Project Type" wire:model="project_type" :options="$projectTypes" />
         <x-select label="Major" wire:model="major" :options="$majors" />
 
