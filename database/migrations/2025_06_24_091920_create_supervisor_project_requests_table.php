@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained('users');
             $table->foreignId('supervisor_id')->constrained('users');
-            $table->foreignId('project_id')->constrained('users');
+            $table->foreignId('project_id')->constrained('projects');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

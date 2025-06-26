@@ -55,6 +55,15 @@ class ShowProject extends Component
             return;
         }
 
+        // check if user has already has a project with a supervisor assigned
+        $exists = Project::where('student_id', auth()->id())
+            ->whereNotNull('supervisor_id')
+            ->exists();
+        if ($exists) {
+            $this->error('You already have a project with a supervisor assigned. You cannot apply for another project.');
+            return;
+        }
+
         StudentProjectRequest::create([
             'project_id' => $this->project->id,
             'student_id' => auth()->id(),

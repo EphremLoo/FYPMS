@@ -9,6 +9,8 @@
 {{--                <span class="block mb-4">Examiner: {{ $project->examiner?->name }}</span>--}}
                 <span class="block mb-4">Student: {{ $project->student?->name }}</span>
                 <span class="block mb-4">Created By: {{ $project->createdBy?->name }}</span>
+                <span class="block mb-4">Project Type: {{ \App\Models\Project::PROJECT_TYPE_ARRAY[$project->project_type] ?? '' }}</span>
+                <span class="block mb-4">Major: {{ \App\Models\Project::MAJOR_ARRAY[$project->major] ?? '' }}</span>
                 <span class="block mb-4">Status: <x-badge value="{{ $project->status_text }}" class="badge-primary" /></span>
                 <span class="block mb-4">Supervisor Marks: {{ $project->supervisor_marks }}</span>
                 <span class="block mb-4">Moderator Marks: {{ $project->moderator_marks }}</span>
