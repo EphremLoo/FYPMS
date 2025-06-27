@@ -99,4 +99,11 @@ class Project extends Model implements Auditable
     {
         return $this->hasMany(SupervisorProjectRequest::class);
     }
+
+    public function updateTotalMarks(): void
+    {
+        $this->update([
+            'total_marks' => ($this->supervisor_marks + $this->moderator_marks)/2,
+        ]);
+    }
 }

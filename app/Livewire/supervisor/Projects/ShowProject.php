@@ -66,6 +66,7 @@ class ShowProject extends Component
             'supervisor_marks' => 'required|numeric',
         ]);
         $this->project->update(['supervisor_marks' => $data['supervisor_marks']]);
+        $this->project->updateTotalMarks(); // Update total marks after saving supervisor marks
 
         $this->success('Project marks updated successfully.');;
     }

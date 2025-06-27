@@ -61,6 +61,7 @@ class ShowProject extends Component
             'moderator_marks' => 'required|numeric',
         ]);
         $this->project->update(['moderator_marks' => $data['moderator_marks']]);
+        $this->project->updateTotalMarks(); // Update total marks after saving moderator marks
 
         $this->success('Project marks updated successfully.');;
     }
