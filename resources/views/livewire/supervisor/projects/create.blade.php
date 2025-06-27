@@ -7,14 +7,14 @@
         <x-select label="Major" wire:model="major" :options="$majors" />
         <x-markdown wire:model="description" label="Description" :config="$config" />
 
-        <x-choices-offline
+        {{-- <x-choices-offline
             label="Student"
             wire:model="student_id"
             :options="$students"
             placeholder="Search ..."
             single
             clearable
-            searchable />
+            searchable /> --}}
 
         <x-choices-offline
             label="Moderator"

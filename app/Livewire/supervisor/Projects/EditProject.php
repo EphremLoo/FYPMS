@@ -59,7 +59,6 @@ class EditProject extends Component
 
     public function delete(Project $project): void
     {
-        $this->project->supervisorProjectRequests()->delete();
         $project->delete();
         $this->error("Deleting #$project->name", redirectTo: route('supervisor.projects.self'));
     }

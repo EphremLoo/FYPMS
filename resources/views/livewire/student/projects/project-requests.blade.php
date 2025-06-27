@@ -34,7 +34,7 @@
             <span>{{ $supervisorProjectRequest->project->name }}</span>
             @endscope
             @scope('cell_supervisor_id', $supervisorProjectRequest)
-            <span>{{ $supervisorProjectRequest->supervisor->name }}</span>
+            <span>{{ $supervisorProjectRequest->supervisor->name}}</span>
             @endscope
             @scope('cell_status_text', $supervisorProjectRequest)
             <x-badge :value="$supervisorProjectRequest->status_text" class="badge-primary" />
