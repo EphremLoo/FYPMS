@@ -57,22 +57,8 @@ class CreateProject extends Component
         $data['created_by'] = auth()->id();
         $data['year'] = now()->year;
 
-        // assign variable for supervisor_id to be used for SupervisorProjectRequest unset the supervisor_id so that it does not end up in the project 
-        $supervisor_id = $data['supervisor_id'] ?? null;
-        unset($data['supervisor_id']);
-
         // create the project
         $project = Project::create($data);
-
-        // Insert data into the SupervisorProjectRequest table
-        if ($supervisor_id) {
-            SupervisorProjectRequest::create([
-            'project_id'   => $project->id,
-            'student_id'   => auth()->id(),
-            'supervisor_id'=> $supervisor_id,
-            'status'       => \App\Models\SupervisorProjectRequest::STATUS_PENDING,
-        ]);
-    }
 
         $this->success('Project created with success.', redirectTo: route('student.projects.index'));
     }

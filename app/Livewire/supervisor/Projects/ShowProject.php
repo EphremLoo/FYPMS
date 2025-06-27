@@ -5,6 +5,7 @@ namespace App\Livewire\supervisor\Projects;
 use App\Models\Project;
 use App\Models\StudentProjectRequest;
 use App\Models\Comments;
+use App\Models\SupervisorProjectRequest;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Rule;
@@ -35,9 +36,12 @@ class ShowProject extends Component
     {
         $studentProjectRequest->update(['status' => StudentProjectRequest::STATUS_APPROVED]);
         $this->project->update(['student_id' => $studentProjectRequest->student_id]);
-        StudentProjectRequest::where('student_id', $studentProjectRequest->student_id)
-            ->where('id', '<>', $studentProjectRequest->id)
-            ->update(['status' => StudentProjectRequest::STATUS_WITHDRAWN]);
+        StudentProjectRequest::where('project_id', $this->project->id)
+            ->where('student_id', '<>', $studentProjectRequest->student_id)
+            ->update(['status' => StudentProjectRequest::STATUS_REJECTED]);
+
+        SupervisorProjectRequest::where('student_id', $studentProjectRequest->student_id)
+            ->update(['status' => SupervisorProjectRequest::STATUS_WITHDRAWN]);
 
         $this->success('Request approved successfully.');
     }

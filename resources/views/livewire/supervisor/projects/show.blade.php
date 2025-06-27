@@ -70,22 +70,24 @@
             </x-tab>
         @endif
 
-        <x-tab name="submission-tab" label="Submission" icon="c-arrow-up-on-square">
-            @if(!empty($project->file))
-                <a href="{{ $project->file }}" target="_blank" download class="btn btn-primary mb-4">Download Submitted Project</a>
-            @else
-                <span>There is no submission.</span>
-            @endif
-            <x-card Title="Project Marks" shadow>
-                <x-form wire:submit="saveProjectMarks">
-                    <x-input label="Marks" wire:model="supervisor_marks" type="number" />
+        @if ($project->createdBy->id == auth()->id() || $project->supervisor_id == auth()->id())
+            <x-tab name="submission-tab" label="Submission" icon="c-arrow-up-on-square">
+                @if(!empty($project->file))
+                    <a href="{{ $project->file }}" target="_blank" download class="btn btn-primary mb-4">Download Submitted Project</a>
+                @else
+                    <span>There is no submission.</span>
+                @endif
+                <x-card Title="Project Marks" shadow>
+                    <x-form wire:submit="saveProjectMarks">
+                        <x-input label="Marks" wire:model="supervisor_marks" type="number" />
 
-                    <x-slot:actions>
-                        <x-button label="Save" icon="o-paper-airplane" spinner="saveProjectMarks" type="submit" class="btn-primary" />
-                    </x-slot:actions>
-                </x-form>
-            </x-card>
-        </x-tab>
+                        <x-slot:actions>
+                            <x-button label="Save" icon="o-paper-airplane" spinner="saveProjectMarks" type="submit" class="btn-primary" />
+                        </x-slot:actions>
+                    </x-form>
+                </x-card>
+            </x-tab>
+        @endif
     </x-tabs>
 
     <x-hr />
