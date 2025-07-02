@@ -34,12 +34,21 @@ class ShowProject extends Component
 
     public function approve(StudentProjectRequest $studentProjectRequest): void
     {
+        // Approve the student and add the student to the project
         $studentProjectRequest->update(['status' => StudentProjectRequest::STATUS_APPROVED]);
         $this->project->update(['student_id' => $studentProjectRequest->student_id]);
+
+        // Rejecta all other students who requests for this project
         StudentProjectRequest::where('project_id', $this->project->id)
-            ->where('student_id', '<>', $studentProjectRequest->student_id)
+            ->where('id', '<>', $studentProjectRequest->id)
             ->update(['status' => StudentProjectRequest::STATUS_REJECTED]);
 
+        // Withdraw all request from the student who got accepted to this project
+        StudentProjectRequest::where('student_id', $studentProjectRequest->student_id)
+            ->where('project_id', '<>', $this->project->id)
+            ->update(['status' => StudentProjectRequest::STATUS_WITHDRAWN]);
+
+        // Withdraw all supervisor requests for the student who got accepted to this project
         SupervisorProjectRequest::where('student_id', $studentProjectRequest->student_id)
             ->update(['status' => SupervisorProjectRequest::STATUS_WITHDRAWN]);
 

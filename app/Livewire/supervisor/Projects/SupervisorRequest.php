@@ -2,6 +2,7 @@
 
 namespace App\Livewire\supervisor\Projects;
 
+use App\Models\StudentProjectRequest;
 use App\Models\SupervisorProjectRequest;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -30,6 +31,10 @@ class SupervisorRequest extends Component
         SupervisorProjectRequest::where('student_id', $supervisorProjectRequest->student_id)
             ->where('id', '<>', $supervisorProjectRequest->id)
             ->update(['status' => SupervisorProjectRequest::STATUS_WITHDRAWN]);
+
+        // Withdraw all project request made by this student
+        StudentProjectRequest::where('student_id', $supervisorProjectRequest->student_id)
+            ->update(['status' => StudentProjectRequest::STATUS_WITHDRAWN]);
         
         $this->success('Request accepted successfully.');
     }
